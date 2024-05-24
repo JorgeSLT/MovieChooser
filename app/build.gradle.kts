@@ -71,4 +71,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
+    implementation(libs.androidx.viewpager2)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
 }
