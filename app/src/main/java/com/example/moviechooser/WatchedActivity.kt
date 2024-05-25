@@ -2,6 +2,7 @@ package com.example.moviechooser
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -90,6 +91,21 @@ class WatchedActivity : AppCompatActivity() {
             fetchMovieDetailsById(movieId)
             fetchMovieImages(movieId.toInt())
             fetchMovieRating(movieId)
+        }
+
+        if (watchedMovieIds.isEmpty()) {
+            findViewById<TextView>(R.id.textView_movie_title).text = "No movies watched"
+            findViewById<TextView>(R.id.textView_movie_rating).text = ""
+            findViewById<ImageView>(R.id.imageView_watched_movie).setImageResource(0) // Clear the image view
+            findViewById<Button>(R.id.button_update_rating).visibility = View.GONE // Hide the button
+        } else {
+            findViewById<Button>(R.id.button_update_rating).visibility = View.VISIBLE // Show the button
+            if (currentSetPos >= 0 && currentSetPos < watchedMovieIds.size) {
+                val movieId = watchedMovieIds[currentSetPos]
+                fetchMovieDetailsById(movieId)
+                fetchMovieImages(movieId.toInt())
+                fetchMovieRating(movieId)
+            }
         }
     }
 

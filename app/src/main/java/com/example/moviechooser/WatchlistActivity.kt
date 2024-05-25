@@ -2,6 +2,7 @@ package com.example.moviechooser
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -86,12 +87,19 @@ class WatchlistActivity : AppCompatActivity() {
 
 
     private fun updateMovieDetails() {
-        if (currentSetPos >= 0 && currentSetPos < watchlistMovieIds.size) {
-            val movieId = watchlistMovieIds[currentSetPos]
-            fetchMovieDetailsById(movieId)
-            fetchMovieImages(movieId.toInt())
+        if (watchlistMovieIds.isEmpty()) {
+            findViewById<TextView>(R.id.textView_movie_title).text = "No movies in watchlist"
+            findViewById<ImageView>(R.id.imageView_watched_movie).setImageResource(0) // Clear the image view
+            findViewById<Button>(R.id.button_mark_watched).visibility = View.GONE // Hide the button
+        } else {
+            findViewById<Button>(R.id.button_mark_watched).visibility = View.VISIBLE // Show the button
+            if (currentSetPos >= 0 && currentSetPos < watchlistMovieIds.size) {
+                fetchMovieDetailsById(watchlistMovieIds[currentSetPos])
+                fetchMovieImages(watchlistMovieIds[currentSetPos].toInt())
+            }
         }
     }
+
 
     private fun loadWatchlistMovieIds(): List<String> {
         val sharedPreferences = getSharedPreferences("MovieChooserPrefs", Context.MODE_PRIVATE)
