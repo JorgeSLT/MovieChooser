@@ -1,6 +1,7 @@
 package com.example.moviechooser
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -23,6 +24,7 @@ import com.example.moviechooser.db.MovieRating
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fetchButton: Button
+    private lateinit var watchedMoviesButton: Button
     private lateinit var rateButton: Button
     private lateinit var movieTextView: TextView
     private lateinit var movieImageView: ImageView
@@ -66,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         fetchButton = findViewById(R.id.button_fetch)
         rateButton = findViewById(R.id.button_rate)
+        watchedMoviesButton = findViewById(R.id.watched_movies)
         watchedButton = findViewById(R.id.button_mark_watched)
         selectGenreButton = findViewById(R.id.button_select_genre)
         movieTextView = findViewById(R.id.textView_movie)
@@ -83,6 +86,12 @@ class MainActivity : AppCompatActivity() {
 
         fetchButton.setOnClickListener {
             fetchRandomMovie()
+        }
+
+        watchedMoviesButton.setOnClickListener {
+            val intent = Intent(this, WatchedActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         watchedButton.setOnClickListener {
@@ -104,7 +113,7 @@ class MainActivity : AppCompatActivity() {
             watchedMovies.add(currentMovieId.toString())
             getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
                 .putStringSet("watchedMovies", watchedMovies).apply()
-            movieTextView.text = "Movie marked as watched."
+            movieTextView.text = "${currentMovieId}"
         }
     }
 
@@ -206,6 +215,12 @@ interface TMDbApi {
         @Query("include_video") includeVideo: Boolean,
         @Query("with_genres") genres: String
     ): Call<MovieResponse>
+
+    @GET("movie/{movie_id}")
+    fun getMovieByID(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+    ): Call<Movie>
 
     @GET("movie/{movie_id}/images")
     fun getMovieImages(
