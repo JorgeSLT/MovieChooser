@@ -45,6 +45,14 @@
         android:layout_toEndOf="@id/button_select_genre"
         android:layout_centerHorizontal="true"/>
 
+    <Button
+        android:id="@+id/button_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate Movie"
+        android:layout_below="@id/button_select_genre"
+        android:layout_centerHorizontal="true"/>
+
 
 
 </RelativeLayout>
