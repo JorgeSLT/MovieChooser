@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView_movie"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:scaleType="fitCenter" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="130dp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/textView_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView_movie"
+        android:layout_above="@+id/button_fetch"
+        android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
+        android:textStyle="bold"
         android:padding="16dp" />
 
     <Button
@@ -24,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fetch Movie"
-        android:layout_below="@id/textView_movie"
+        android:layout_above="@id/button_mark_watchlist"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -32,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch list"
-        android:layout_below="@id/button_fetch"
+        android:layout_above="@id/button_rate"
         android:layout_toStartOf="@id/button_select_genre"
         android:layout_centerHorizontal="true"/>
 
@@ -41,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Genre"
-        android:layout_below="@id/button_fetch"
+        android:layout_above="@id/button_rate"
         android:layout_centerHorizontal="true"
          />
 
@@ -50,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mark as Watched"
-        android:layout_below="@id/button_fetch"
+        android:layout_above="@id/button_rate"
         android:layout_toEndOf="@id/button_select_genre"
         android:layout_centerHorizontal="true"/>
 
@@ -59,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rate Movie"
-        android:layout_below="@id/button_select_genre"
+        android:layout_above="@id/watched_movies"
         android:layout_centerHorizontal="true"/>
 
     <Button
@@ -67,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watched movies"
-        android:layout_below="@id/button_rate"
+        android:layout_above="@id/toolbar"
         android:layout_centerHorizontal="true"/>
 
     <Button
@@ -75,9 +80,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch list movies"
-        android:layout_below="@id/button_rate"
+        android:layout_above="@id/toolbar"
         android:layout_toStartOf="@id/watched_movies"
         android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/lightGray"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/button_home"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_home"
+            android:layout_marginStart="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:id="@+id/button_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_profile"
+            android:layout_marginEnd="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
 
 

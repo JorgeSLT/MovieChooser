@@ -47,4 +47,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:text="Siguiente" />
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/lightGray"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/button_home"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_home"
+            android:layout_marginStart="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:id="@+id/button_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_profile"
+            android:layout_marginEnd="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 </RelativeLayout>

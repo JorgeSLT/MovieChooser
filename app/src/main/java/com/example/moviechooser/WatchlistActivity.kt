@@ -1,9 +1,11 @@
 package com.example.moviechooser
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +36,7 @@ class WatchlistActivity : AppCompatActivity() {
         val btnPrevious = findViewById<Button>(R.id.button_previous)
         val btnNext = findViewById<Button>(R.id.button_next)
         val btnWatched = findViewById<Button>(R.id.button_mark_watched)
+        val btnHome = findViewById<ImageButton>(R.id.button_home)
 
         db = AppDatabase.getDatabase(this)
 
@@ -56,6 +59,11 @@ class WatchlistActivity : AppCompatActivity() {
 
         btnWatched.setOnClickListener {
             markMovieAsWatched()
+        }
+
+        btnHome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

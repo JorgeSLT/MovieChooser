@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.MovieChooser" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Puedes añadir más personalizaciones aquí -->
+        <!-- Color de fondo principal -->
+        <item name="android:windowBackground">@color/black</item>
+        <!-- Color del texto principal -->
+        <item name="android:textColor">@color/white</item>
+        <!-- Color de los botones -->
+        <item name="colorButtonNormal">@color/darkGray</item>
+        <!-- Texto de los botones -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- Color de los botones al ser presionados -->
+        <item name="colorControlHighlight">@color/lightGray</item>
+        <!-- Barra de estado -->
+        <item name="android:statusBarColor">@color/black</item>
+        <!-- Barra de navegación -->
+        <item name="android:navigationBarColor">@color/black</item>
     </style>
 </resources>
