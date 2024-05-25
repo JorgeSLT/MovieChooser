@@ -26,14 +26,11 @@ import com.example.moviechooser.db.MovieRating
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fetchButton: Button
-    private lateinit var watchedMoviesButton: Button
-    private lateinit var rateButton: Button
     private lateinit var movieTextView: TextView
     private lateinit var movieImageView: ImageView
     private lateinit var selectGenreButton: Button
     private lateinit var watchedButton: Button
     private lateinit var watchlistMovieButton: Button
-    private lateinit var watchlistButton: Button
     private lateinit var profileButton: ImageButton
     private var selectedGenre: String = ""
     private var currentMovieId: Int = -1
@@ -76,15 +73,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fetchButton = findViewById(R.id.button_fetch)
-        rateButton = findViewById(R.id.button_rate)
         profileButton = findViewById(R.id.button_profile)
-        watchedMoviesButton = findViewById(R.id.watched_movies)
         watchedButton = findViewById(R.id.button_mark_watched)
         selectGenreButton = findViewById(R.id.button_select_genre)
         movieTextView = findViewById(R.id.textView_movie)
         movieImageView = findViewById(R.id.imageView_movie)
         watchlistMovieButton = findViewById(R.id.button_mark_watchlist)
-        watchlistButton = findViewById(R.id.watch_list)
 
         if (isFirstTime()) {
             lifecycleScope.launch(Dispatchers.IO) {
@@ -100,26 +94,12 @@ class MainActivity : AppCompatActivity() {
             fetchRandomMovie()
         }
 
-        watchedMoviesButton.setOnClickListener {
-            val intent = Intent(this, WatchedActivity::class.java)
-            startActivity(intent)
-        }
-
         watchedButton.setOnClickListener {
             markMovieAsWatched()
         }
 
         watchlistMovieButton.setOnClickListener {
             markMovieAsWatchlist()
-        }
-
-        watchlistButton.setOnClickListener {
-            val intent = Intent(this, WatchlistActivity::class.java)
-            startActivity(intent)
-        }
-
-        rateButton.setOnClickListener {
-            showRatingDialog()
         }
 
         profileButton.setOnClickListener {
@@ -138,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             watchedMovies.add(currentMovieId.toString())
             getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
                 .putStringSet("watchedMovies", watchedMovies).apply()
-            Toast.makeText(this, "Marked as watched", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.mark_as_watched), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -147,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             watchlistMovies.add(currentMovieId.toString())
             getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
                 .putStringSet("watchlistMovies", watchlistMovies).apply()
-            Toast.makeText(this, "Added to watchlist", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.added_to_watchlist), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -156,18 +136,19 @@ class MainActivity : AppCompatActivity() {
         val genreIds = genreMap.values.toTypedArray()
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Choose a Genre")
+        builder.setTitle(getString(R.string.choose_genre))
         builder.setItems(genres) { _, which ->
             selectedGenre = genreIds[which]
-            movieTextView.text = "Genre selected: ${genres[which]}"
+            movieTextView.text = getString(R.string.genre_selected, genres[which])
         }
         builder.create().show()
     }
 
+
     private fun showRatingDialog() {
         val ratings = arrayOf("1", "2", "3", "4", "5")
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Rate this Movie")
+        builder.setTitle(getString(R.string.rate_movie))
         builder.setItems(ratings) { _, which ->
             saveRating(ratings[which].toInt())
         }
@@ -176,13 +157,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveRating(rating: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            val movieDao = db.movieRatingDao() // Use the pre-initialized database instance
+            val movieDao = db.movieRatingDao()
             movieDao.insertRating(MovieRating(currentMovieId, rating))
             withContext(Dispatchers.Main) {
-                movieTextView.append(" - Rated: $rating")
+                movieTextView.append(getString(R.string.rated, rating))
             }
         }
     }
+
 
 
     private fun fetchRandomMovie() {
@@ -200,7 +182,7 @@ class MainActivity : AppCompatActivity() {
                             movieTextView.text = randomMovie.title
                             fetchMovieImages(randomMovie.id)
                         } else {
-                            movieTextView.text = "No movies found or all watched"
+                            movieTextView.text = getString(R.string.no_movies)
                         }
                     } else {
                         movieTextView.text = "Failed to retrieve movies: ${response.errorBody()?.string() ?: "Unknown error"}"
@@ -222,7 +204,7 @@ class MainActivity : AppCompatActivity() {
                         val imageUrl = "https://image.tmdb.org/t/p/w500${response.body()!!.posters.first().file_path}"
                         Glide.with(this@MainActivity).load(imageUrl).into(movieImageView)
                     } else {
-                        movieTextView.text = "No images available for this movie."
+                        movieTextView.text = getString(R.string.no_images)
                     }
                 }
 

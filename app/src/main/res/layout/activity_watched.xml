@@ -15,7 +15,7 @@
             android:layout_width="110dp"
             android:layout_height="70dp"
             android:layout_marginEnd="20dp"
-            android:text="Language"
+            android:text="@string/language"
             android:layout_toStartOf="@+id/button_watched_page"
             android:layout_centerVertical="true"/>
 
@@ -24,7 +24,7 @@
             android:layout_width="110dp"
             android:layout_height="70dp"
             android:layout_marginEnd="20dp"
-            android:text="Watched"
+            android:text="@string/watched"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/button_watchlist_page"
             android:layout_width="110dp"
             android:layout_height="70dp"
-            android:text="Watchlist"
+            android:text="@string/watch_list"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_toEndOf="@+id/button_watched_page" />
@@ -66,7 +66,7 @@
         android:id="@+id/button_update_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actualizar Calificación"
+        android:text="@string/rate_movie"
         android:layout_below="@id/textView_movie_rating"/>
 
     <Button
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/toolbar2"
-        android:text="Anterior" />
+        android:text="@string/anterior" />
 
     <Button
         android:id="@+id/button_next"
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/toolbar2"
-        android:text="Siguiente" />
+        android:text="@string/siguiente" />
 
     <RelativeLayout
         android:id="@+id/toolbar"

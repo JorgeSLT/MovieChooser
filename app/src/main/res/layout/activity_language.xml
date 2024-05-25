@@ -15,7 +15,7 @@
             android:layout_width="110dp"
             android:layout_height="70dp"
             android:layout_marginEnd="20dp"
-            android:text="Language"
+            android:text="@string/language"
             android:layout_toStartOf="@+id/button_watched_page"
             android:layout_centerVertical="true"/>
 
@@ -24,7 +24,7 @@
             android:layout_width="110dp"
             android:layout_height="70dp"
             android:layout_marginEnd="20dp"
-            android:text="Watched"
+            android:text="@string/watched"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -32,11 +32,44 @@
             android:id="@+id/button_watchlist_page"
             android:layout_width="110dp"
             android:layout_height="70dp"
-            android:text="Watchlist"
+            android:text="@string/watchlist"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_toEndOf="@+id/button_watched_page" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/toolbar2"
+        android:text="@string/choose_your_language"
+        />
+
+    <ImageButton
+        android:id="@+id/button_english"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:src="@drawable/england"
+        android:layout_below="@+id/text_choose"
+        android:layout_marginStart="60dp"
+        android:scaleType="fitCenter"
+        android:background="@null"/>
+
+    <ImageButton
+        android:id="@+id/button_spanish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/button_english"
+        android:layout_alignTop="@+id/button_english"
+        android:layout_alignBottom="@+id/button_english"
+        android:src="@drawable/spain"
+        android:scaleType="fitCenter"
+        android:background="@null"/>
+
 
     <RelativeLayout
         android:id="@+id/toolbar"

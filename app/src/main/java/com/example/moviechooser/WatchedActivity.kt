@@ -84,7 +84,7 @@ class WatchedActivity : AppCompatActivity() {
     private fun showRatingDialog() {
         val ratings = arrayOf("1", "2", "3", "4", "5")
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Rate this Movie")
+        builder.setTitle(getString(R.string.rate_movie))
         builder.setItems(ratings) { _, which ->
             val rating = ratings[which].toInt()
             updateMovieRating(watchedMovieIds[currentSetPos], rating)
@@ -102,9 +102,10 @@ class WatchedActivity : AppCompatActivity() {
 
     private fun fetchMovieRating(movieId: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val rating = db.movieRatingDao().getRatingById(movieId.toInt())  // Make sure you have a method in DAO to fetch rating
+            val rating = db.movieRatingDao().getRatingById(movieId.toInt())
+            val ratedText = rating?.toString() ?: getString(R.string.rating_not_available)
             withContext(Dispatchers.Main) {
-                movieRatingTextView.text = "Rating: ${rating ?: "Not rated"}"
+                movieRatingTextView.text = getString(R.string.label_rating, ratedText)
             }
         }
     }
@@ -118,7 +119,7 @@ class WatchedActivity : AppCompatActivity() {
         }
 
         if (watchedMovieIds.isEmpty()) {
-            findViewById<TextView>(R.id.textView_movie_title).text = "No movies watched"
+            findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.no_movies_watched)
             findViewById<TextView>(R.id.textView_movie_rating).text = ""
             findViewById<ImageView>(R.id.imageView_watched_movie).setImageResource(0) // Clear the image view
             findViewById<Button>(R.id.button_update_rating).visibility = View.GONE // Hide the button
@@ -149,7 +150,7 @@ class WatchedActivity : AppCompatActivity() {
                     val movie = response.body()!!
                     findViewById<TextView>(R.id.textView_movie_title).text = movie.title
                 } else {
-                    findViewById<TextView>(R.id.textView_movie_title).text = "Movie not found"
+                    findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.movie_not_found)
                 }
             }
 

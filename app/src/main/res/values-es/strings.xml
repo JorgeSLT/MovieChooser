@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">MovieChooser</string>
+    <string name="fetch_movie">Buscar peli</string>
+    <string name="watch_list">Para ver</string>
+    <string name="select_genre">Genero</string>
+    <string name="mark_as_watched">Vista</string>
+    <string name="rate_movie">Puntuar</string>
+    <string name="label_rating">Puntuación: %1$s</string>
+    <string name="rating_not_available">Sin puntuar</string>
+    <string name="no_movies_watched">Sin peliculas vistas</string>
+    <string name="movie_not_found">Pelicula no encontrada</string>
+    <string name="added_to_watchlist">Guardado para ver</string>
+    <string name="language">Idioma</string>
+    <string name="watched">Vistas</string>
+    <string name="watchlist">Para ver</string>
+    <string name="choose_your_language">Elige tu idioma:</string>
+    <string name="choose_genre">Elige un genero</string>
+    <string name="genre_selected">Genero seleccionado: %1$s</string>
+    <string name="no_movies">No hay peliculas o todas han sido vistas</string>
+    <string name="no_images">No hay imagen</string>
+    <string name="rated"> - Valorado: %1$d</string>
+    <string name="marked_watchlist">Marcado como visto</string>
+    <string name="no_watchlist">Ninguna pelicula para ver</string>
+    <string name="anterior">Anterior</string>
+    <string name="siguiente">Siguiente</string>
+</resources>

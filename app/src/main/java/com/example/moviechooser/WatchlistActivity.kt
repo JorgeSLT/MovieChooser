@@ -104,7 +104,7 @@ class WatchlistActivity : AppCompatActivity() {
                 .putStringSet("watchlistMovies", tempWatchlist).apply()
 
             // Actualiza la interfaz de usuario
-            findViewById<TextView>(R.id.textView_movie_title).text = "Marked as watched and removed from watchlist"
+            findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.marked_watchlist)
 
             // Actualizar la lista de IDs en memoria
             watchlistMovieIds = tempWatchlist.toList()
@@ -118,7 +118,7 @@ class WatchlistActivity : AppCompatActivity() {
 
     private fun updateMovieDetails() {
         if (watchlistMovieIds.isEmpty()) {
-            findViewById<TextView>(R.id.textView_movie_title).text = "No movies in watchlist"
+            findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.no_watchlist)
             findViewById<ImageView>(R.id.imageView_watched_movie).setImageResource(0) // Clear the image view
             findViewById<Button>(R.id.button_mark_watched).visibility = View.GONE // Hide the button
         } else {
@@ -147,7 +147,7 @@ class WatchlistActivity : AppCompatActivity() {
                     val movie = response.body()!!
                     findViewById<TextView>(R.id.textView_movie_title).text = movie.title
                 } else {
-                    findViewById<TextView>(R.id.textView_movie_title).text = "Movie not found"
+                    findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.movie_not_found)
                 }
             }
 
@@ -165,7 +165,7 @@ class WatchlistActivity : AppCompatActivity() {
                     val imageUrl = "https://image.tmdb.org/t/p/w500${response.body()!!.posters.first().file_path}"
                     Glide.with(this@WatchlistActivity).load(imageUrl).into(findViewById<ImageView>(R.id.imageView_watched_movie))
                 } else {
-                    findViewById<TextView>(R.id.textView_movie_title).text = "No images available"
+                    findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.no_images)
                 }
             }
 
