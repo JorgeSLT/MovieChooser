@@ -14,14 +14,13 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
-                val newInstance = Room.databaseBuilder(
+                instance ?: Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "movie_chooser_database"
-                ).build()
-                instance = newInstance
-                newInstance
+                ).fallbackToDestructiveMigration().build().also { instance = it }
             }
         }
     }
 }
+

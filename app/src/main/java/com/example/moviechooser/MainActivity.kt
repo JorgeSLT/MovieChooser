@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity() {
         watchedMoviesButton.setOnClickListener {
             val intent = Intent(this, WatchedActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         watchedButton.setOnClickListener {

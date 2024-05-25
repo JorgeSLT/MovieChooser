@@ -10,4 +10,7 @@ interface MovieRatingDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRating(movieRating: MovieRating)
 
+    @Query("SELECT rating FROM movies WHERE movieId = :movieId")
+    fun getRatingById(movieId: Int): Int?
+
 }
