@@ -28,6 +28,15 @@
         android:layout_centerHorizontal="true" />
 
     <Button
+        android:id="@+id/button_mark_watchlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch list"
+        android:layout_below="@id/button_fetch"
+        android:layout_toStartOf="@id/button_select_genre"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
         android:id="@+id/button_select_genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,6 +68,15 @@
         android:layout_height="wrap_content"
         android:text="Watched movies"
         android:layout_below="@id/button_rate"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/watch_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch list movies"
+        android:layout_below="@id/button_rate"
+        android:layout_toStartOf="@id/watched_movies"
         android:layout_centerHorizontal="true"/>
 
 

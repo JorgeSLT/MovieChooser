@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var movieImageView: ImageView
     private lateinit var selectGenreButton: Button
     private lateinit var watchedButton: Button
+    private lateinit var watchlistMovieButton: Button
+    private lateinit var watchlistButton: Button
     private var selectedGenre: String = ""
     private var currentMovieId: Int = -1
 
@@ -37,6 +39,10 @@ class MainActivity : AppCompatActivity() {
 
     private val watchedMovies: MutableSet<String> by lazy {
         getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).getStringSet("watchedMovies", mutableSetOf()) ?: mutableSetOf()
+    }
+
+    private val watchlistMovies: MutableSet<String> by lazy {
+        getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).getStringSet("watchlistMovies", mutableSetOf()) ?: mutableSetOf()
     }
 
     private val genreMap = mapOf(
@@ -73,6 +79,8 @@ class MainActivity : AppCompatActivity() {
         selectGenreButton = findViewById(R.id.button_select_genre)
         movieTextView = findViewById(R.id.textView_movie)
         movieImageView = findViewById(R.id.imageView_movie)
+        watchlistMovieButton = findViewById(R.id.button_mark_watchlist)
+        watchlistButton = findViewById(R.id.watch_list)
 
         if (isFirstTime()) {
             lifecycleScope.launch(Dispatchers.IO) {
@@ -97,6 +105,15 @@ class MainActivity : AppCompatActivity() {
             markMovieAsWatched()
         }
 
+        watchlistMovieButton.setOnClickListener {
+            markMovieAsWatchlist()
+        }
+
+        watchlistButton.setOnClickListener {
+            val intent = Intent(this, WatchlistActivity::class.java)
+            startActivity(intent)
+        }
+
         rateButton.setOnClickListener {
             showRatingDialog()
         }
@@ -112,7 +129,16 @@ class MainActivity : AppCompatActivity() {
             watchedMovies.add(currentMovieId.toString())
             getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
                 .putStringSet("watchedMovies", watchedMovies).apply()
-            movieTextView.text = "${currentMovieId}"
+            movieTextView.text = "Marked as watched}"
+        }
+    }
+
+    private fun markMovieAsWatchlist() {
+        if (currentMovieId != -1) {
+            watchlistMovies.add(currentMovieId.toString())
+            getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
+                .putStringSet("watchlistMovies", watchlistMovies).apply()
+            movieTextView.text = "Added to watchlist"
         }
     }
 
