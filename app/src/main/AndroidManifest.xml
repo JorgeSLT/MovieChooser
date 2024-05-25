@@ -37,6 +37,13 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.MovieChooser">
         </activity>
+
+        <activity
+            android:name=".LanguageActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MovieChooser">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

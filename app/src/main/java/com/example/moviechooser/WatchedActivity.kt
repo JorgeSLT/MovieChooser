@@ -34,6 +34,9 @@ class WatchedActivity : AppCompatActivity() {
         val btnNext = findViewById<Button>(R.id.button_next)
         val btnUpdateRating = findViewById<Button>(R.id.button_update_rating)
         val btnHome = findViewById<ImageButton>(R.id.button_home)
+        val btnWatchlistPage = findViewById<Button>(R.id.button_watchlist_page)
+        val btnLanguage = findViewById<Button>(R.id.button_language_page)
+
         movieRatingTextView = findViewById<TextView>(R.id.textView_movie_rating)
 
         db = AppDatabase.getDatabase(this)
@@ -62,6 +65,19 @@ class WatchedActivity : AppCompatActivity() {
         btnHome.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
+        }
+
+        btnWatchlistPage.setOnClickListener {
+            val intent = Intent(this, WatchlistActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btnLanguage.setOnClickListener {
+            val intent = Intent(this, LanguageActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var watchedButton: Button
     private lateinit var watchlistMovieButton: Button
     private lateinit var watchlistButton: Button
+    private lateinit var profileButton: ImageButton
     private var selectedGenre: String = ""
     private var currentMovieId: Int = -1
 
@@ -75,6 +77,7 @@ class MainActivity : AppCompatActivity() {
 
         fetchButton = findViewById(R.id.button_fetch)
         rateButton = findViewById(R.id.button_rate)
+        profileButton = findViewById(R.id.button_profile)
         watchedMoviesButton = findViewById(R.id.watched_movies)
         watchedButton = findViewById(R.id.button_mark_watched)
         selectGenreButton = findViewById(R.id.button_select_genre)
@@ -117,6 +120,11 @@ class MainActivity : AppCompatActivity() {
 
         rateButton.setOnClickListener {
             showRatingDialog()
+        }
+
+        profileButton.setOnClickListener {
+            val intent = Intent(this, WatchedActivity::class.java)
+            startActivity(intent)
         }
     }
 

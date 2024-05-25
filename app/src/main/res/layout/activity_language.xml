@@ -38,53 +38,6 @@
             android:layout_toEndOf="@+id/button_watched_page" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageView_watched_movie"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:layout_below="@id/button_previous"/>
-
-    <TextView
-        android:id="@+id/textView_movie_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageView_watched_movie"
-        android:padding="16dp"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView_movie_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_movie_title"
-        android:padding="16dp"
-        android:textSize="18sp" />
-
-
-    <Button
-        android:id="@+id/button_update_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Actualizar Calificación"
-        android:layout_below="@id/textView_movie_rating"/>
-
-    <Button
-        android:id="@+id/button_previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/toolbar2"
-        android:text="Anterior" />
-
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/toolbar2"
-        android:text="Siguiente" />
-
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
