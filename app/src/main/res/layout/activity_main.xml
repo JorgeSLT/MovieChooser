@@ -3,17 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerImages"
+    <ImageView
+        android:id="@+id/imageView_movie"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/textView_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewPagerImages"
+        android:layout_below="@id/imageView_movie"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
         android:padding="16dp" />

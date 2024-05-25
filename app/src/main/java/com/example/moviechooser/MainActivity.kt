@@ -1,26 +1,24 @@
 package com.example.moviechooser
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
-import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fetchButton: Button
     private lateinit var movieTextView: TextView
-    private lateinit var viewPager: ViewPager2
-    private var imagesList: List<String> = listOf()
+    private lateinit var movieImageView: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         fetchButton = findViewById(R.id.button_fetch)
         movieTextView = findViewById(R.id.textView_movie)
-        viewPager = findViewById(R.id.viewPagerImages)
+        movieImageView = findViewById(R.id.imageView_movie)
 
         fetchButton.setOnClickListener {
             fetchRandomMovie()
@@ -37,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchRandomMovie() {
         val api = RetrofitClient.instance
-        api.getMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", "popularity.desc", false, false, 1, "")
+        api.getMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", "popularity.desc", false, false, "")
             .enqueue(object : Callback<MovieResponse> {
                 override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                     if (response.isSuccessful && response.body() != null) {
@@ -60,96 +58,42 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun fetchRandomImages(finalImageUrl: String?) {
-        val api = RetrofitClient.instance
-        api.getPopularMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", 1)  // Considera iterar sobre múltiples páginas si es necesario
-            .enqueue(object : Callback<MovieResponse> {
-                override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                    if (response.isSuccessful && response.body() != null) {
-                        val images = response.body()!!.results
-                            .take(5)  // Tomamos las primeras 5 imágenes
-                            .map { "https://image.tmdb.org/t/p/w500${it.imageUrl}" }
-                            .toMutableList()
-
-                        println("First 5 Images: $images")  // Log para verificar las imágenes
-
-                        if (finalImageUrl != null) {
-                            images.add(finalImageUrl)  // Añade la imagen final
-                            println("Final Image Added: $finalImageUrl")  // Log para verificar la imagen final
-                        }
-                        setupViewPager(images, finalImageUrl)
-                    } else {
-                        println("Failed to retrieve first 5 images: ${response.errorBody()?.string()}")  // Log del error
-                        movieTextView.text = "Failed to retrieve images: ${response.errorBody()?.string() ?: "Unknown error"}"
-                    }
-                }
-
-                override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                    println("API Call Failure: ${t.message}")  // Log del fallo de la API
-                    movieTextView.text = "Error in fetching images: ${t.localizedMessage ?: "Unknown error"}"
-                }
-            })
-    }
-
-
-
-
     private fun fetchMovieImages(movieId: Int) {
         val api = RetrofitClient.instance
         api.getMovieImages(movieId, "4c442d6c9d9f9e2d444029fbb1fd7732")
             .enqueue(object : Callback<MovieImagesResponse> {
                 override fun onResponse(call: Call<MovieImagesResponse>, response: Response<MovieImagesResponse>) {
-                    if (response.isSuccessful && response.body() != null) {
-                        val finalImage = response.body()!!.posters
-                            .map { "https://image.tmdb.org/t/p/w500${it.file_path}" }
-                            .firstOrNull()
-                        fetchRandomImages(finalImage)
+                    if (response.isSuccessful && response.body() != null && response.body()!!.posters.isNotEmpty()) {
+                        val imageUrl = "https://image.tmdb.org/t/p/w500${response.body()!!.posters.first().file_path}"
+                        Glide.with(this@MainActivity).load(imageUrl).into(movieImageView)
                     } else {
-                        movieTextView.text = "Failed to retrieve images: ${response.errorBody()?.string() ?: "Unknown error"}"
+                        movieTextView.text = "No images available for this movie."
                     }
                 }
 
                 override fun onFailure(call: Call<MovieImagesResponse>, t: Throwable) {
-                    movieTextView.text = "Error in fetching images: ${t.localizedMessage ?: "Unknown error"}"
+                    movieTextView.text = "Error fetching images: ${t.localizedMessage ?: "Unknown error"}"
                 }
             })
     }
+}
 
+interface TMDbApi {
+    @GET("discover/movie")
+    fun getMovies(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("sort_by") sortBy: String,
+        @Query("include_adult") includeAdult: Boolean,
+        @Query("include_video") includeVideo: Boolean,
+        @Query("with_genres") genres: String
+    ): Call<MovieResponse>
 
-    private fun setupViewPager(images: List<String>, finalImageUrl: String?) {
-        val adapter = ImageSliderAdapter(images, finalImageUrl)
-        viewPager.adapter = adapter
-        viewPager.setCurrentItem(0, true)  // Asegúrate de que empieza en la primera imagen
-
-        // Opcional: Agrega un delay antes de mover al final para asegurar que las imágenes se muestren
-        Handler(Looper.getMainLooper()).postDelayed({
-            finalImageUrl?.let {
-                val finalIndex = images.indexOf(it)
-                if (finalIndex != -1) {
-                    viewPager.setCurrentItem(finalIndex, true)
-                }
-            }
-        }, 5000)  // 5000 ms = 5 segundos antes de mostrar la imagen final
-    }
-
-
-    private fun simulateScrolling(images: List<String>, finalImageUrl: String?) {
-        val handler = Handler(Looper.getMainLooper())
-        var currentItem = 0
-        val runnable = object : Runnable {
-            override fun run() {
-                if (currentItem < images.size) {
-                    viewPager.setCurrentItem(currentItem++, true)
-                    handler.postDelayed(this, 200) // Cambia la imagen cada 200 ms
-                }
-            }
-        }
-        handler.post(runnable)
-    }
-
-
-
-
+    @GET("movie/{movie_id}/images")
+    fun getMovieImages(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ): Call<MovieImagesResponse>
 }
 
 data class Movie(
@@ -157,7 +101,7 @@ data class Movie(
     val title: String,
     val overview: String,
     val genre_ids: List<Int>,
-    val imageUrl: String // Add this assuming you have an image URL
+    val imageUrl: String  // This field might not be needed if images are fetched separately
 )
 
 data class MovieResponse(
@@ -173,4 +117,3 @@ data class MovieImagesResponse(
 data class ImageDetail(
     val file_path: String
 )
-

@@ -13,7 +13,6 @@ interface TMDbApi {
         @Query("sort_by") sortBy: String,
         @Query("include_adult") includeAdult: Boolean,
         @Query("include_video") includeVideo: Boolean,
-        @Query("page") page: Int,
         @Query("with_genres") genres: String
     ): Call<MovieResponse>
 
@@ -25,6 +24,14 @@ interface TMDbApi {
 
     @GET("movie/popular")
     fun getPopularMovies(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ): Call<MovieResponse>
+
+    // Asumiendo que tienes una función en tu API para discover movies
+    @GET("discover/movie")
+    fun getDiscoverMovies(
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: Int
