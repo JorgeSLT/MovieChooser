@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.moviechooser.db.AppDatabase
-import com.example.moviechooser.db.MovieRating
-import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,14 +59,31 @@ class WatchlistActivity : AppCompatActivity() {
     }
 
     private fun markMovieAsWatched() {
-        val movieId = watchlistMovieIds[currentSetPos].toInt()
-        if (movieId != -1) {
-            watchedMovies.add(movieId.toString())
+        val movieId = watchlistMovieIds[currentSetPos]
+        if (movieId.isNotEmpty()) {
+            // Añadir a la lista de películas vistas
+            watchedMovies.add(movieId)
             getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
                 .putStringSet("watchedMovies", watchedMovies).apply()
-            findViewById<TextView>(R.id.textView_movie_title).text = "Marked as watched"
+
+            // Eliminar de la lista de watchlist
+            val tempWatchlist = watchlistMovies.toMutableSet()
+            tempWatchlist.remove(movieId)
+            getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
+                .putStringSet("watchlistMovies", tempWatchlist).apply()
+
+            // Actualiza la interfaz de usuario
+            findViewById<TextView>(R.id.textView_movie_title).text = "Marked as watched and removed from watchlist"
+
+            // Actualizar la lista de IDs en memoria
+            watchlistMovieIds = tempWatchlist.toList()
+            if (currentSetPos >= watchlistMovieIds.size) {
+                currentSetPos = watchlistMovieIds.size - 1
+            }
+            updateMovieDetails()
         }
     }
+
 
     private fun updateMovieDetails() {
         if (currentSetPos >= 0 && currentSetPos < watchlistMovieIds.size) {
