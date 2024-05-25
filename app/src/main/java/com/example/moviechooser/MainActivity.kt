@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -129,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             watchedMovies.add(currentMovieId.toString())
             getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
                 .putStringSet("watchedMovies", watchedMovies).apply()
-            movieTextView.text = "Marked as watched}"
+            Toast.makeText(this, "Marked as watched", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -138,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             watchlistMovies.add(currentMovieId.toString())
             getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
                 .putStringSet("watchlistMovies", watchlistMovies).apply()
-            movieTextView.text = "Added to watchlist"
+            Toast.makeText(this, "Added to watchlist", Toast.LENGTH_SHORT).show()
         }
     }
 
