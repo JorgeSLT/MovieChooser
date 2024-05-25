@@ -26,4 +26,25 @@
         android:text="Fetch Movie"
         android:layout_below="@id/textView_movie"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button_select_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Genre"
+        android:layout_below="@id/button_fetch"
+        android:layout_centerHorizontal="true"
+         />
+
+    <Button
+        android:id="@+id/button_mark_watched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mark as Watched"
+        android:layout_below="@id/button_fetch"
+        android:layout_toEndOf="@id/button_select_genre"
+        android:layout_centerHorizontal="true"/>
+
+
+
 </RelativeLayout>
