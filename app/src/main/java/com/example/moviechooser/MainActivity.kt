@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var movieTextView: TextView
     private lateinit var movieImageView: ImageView
     private lateinit var selectGenreButton: Button
+    private lateinit var watchedButton: Button
     private var selectedGenre: String = ""
     private var currentMovieId: Int = -1
 
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         fetchButton = findViewById(R.id.button_fetch)
         rateButton = findViewById(R.id.button_rate)
+        watchedButton = findViewById(R.id.button_mark_watched)
         selectGenreButton = findViewById(R.id.button_select_genre)
         movieTextView = findViewById(R.id.textView_movie)
         movieImageView = findViewById(R.id.imageView_movie)
@@ -83,6 +85,10 @@ class MainActivity : AppCompatActivity() {
             fetchRandomMovie()
         }
 
+        watchedButton.setOnClickListener {
+            markMovieAsWatched()
+        }
+
         rateButton.setOnClickListener {
             showRatingDialog()
         }
@@ -91,6 +97,15 @@ class MainActivity : AppCompatActivity() {
     private fun isFirstTime(): Boolean {
         val sharedPref = getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("FIRST_TIME", true)
+    }
+
+    private fun markMovieAsWatched() {
+        if (currentMovieId != -1) {
+            watchedMovies.add(currentMovieId.toString())
+            getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).edit()
+                .putStringSet("watchedMovies", watchedMovies).apply()
+            movieTextView.text = "Movie marked as watched."
+        }
     }
 
     private fun showGenreDialog() {
@@ -182,53 +197,53 @@ class MainActivity : AppCompatActivity() {
 
 
 interface TMDbApi {
-        @GET("discover/movie")
-        fun getMovies(
-            @Query("api_key") apiKey: String,
-            @Query("language") language: String,
-            @Query("sort_by") sortBy: String,
-            @Query("include_adult") includeAdult: Boolean,
-            @Query("include_video") includeVideo: Boolean,
-            @Query("with_genres") genres: String
-        ): Call<MovieResponse>
+    @GET("discover/movie")
+    fun getMovies(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("sort_by") sortBy: String,
+        @Query("include_adult") includeAdult: Boolean,
+        @Query("include_video") includeVideo: Boolean,
+        @Query("with_genres") genres: String
+    ): Call<MovieResponse>
 
-        @GET("movie/{movie_id}/images")
-        fun getMovieImages(
-            @Path("movie_id") movieId: Int,
-            @Query("api_key") apiKey: String
-        ): Call<MovieImagesResponse>
+    @GET("movie/{movie_id}/images")
+    fun getMovieImages(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ): Call<MovieImagesResponse>
+}
+
+object RetrofitClient {
+    private const val BASE_URL = "https://api.themoviedb.org/3/"
+    val instance: TMDbApi by lazy {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        retrofit.create(TMDbApi::class.java)
     }
+}
 
-    object RetrofitClient {
-        private const val BASE_URL = "https://api.themoviedb.org/3/"
-        val instance: TMDbApi by lazy {
-            val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+data class Movie(
+    val id: Int,
+    val title: String,
+    val overview: String,
+    val genre_ids: List<Int>,
+    val imageUrl: String
+)
 
-            retrofit.create(TMDbApi::class.java)
-        }
-    }
+data class MovieResponse(
+    val results: List<Movie>
+)
 
-    data class Movie(
-        val id: Int,
-        val title: String,
-        val overview: String,
-        val genre_ids: List<Int>,
-        val imageUrl: String
-    )
+data class MovieImagesResponse(
+    val id: Int,
+    val backdrops: List<ImageDetail>,
+    val posters: List<ImageDetail>
+)
 
-    data class MovieResponse(
-        val results: List<Movie>
-    )
-
-    data class MovieImagesResponse(
-        val id: Int,
-        val backdrops: List<ImageDetail>,
-        val posters: List<ImageDetail>
-    )
-
-    data class ImageDetail(
-        val file_path: String
-    )
+data class ImageDetail(
+    val file_path: String
+)
