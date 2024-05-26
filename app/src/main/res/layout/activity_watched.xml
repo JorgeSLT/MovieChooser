@@ -40,9 +40,11 @@
 
     <ImageView
         android:id="@+id/imageView_watched_movie"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="300dp"
-        android:scaleType="centerCrop"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
         android:layout_below="@id/button_previous"/>
 
     <TextView
@@ -50,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_watched_movie"
+        android:layout_centerHorizontal="true"
         android:padding="16dp"
         android:textSize="18sp" />
 
@@ -58,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_movie_title"
+        android:layout_centerHorizontal="true"
         android:padding="16dp"
         android:textSize="18sp" />
 
@@ -66,13 +70,17 @@
         android:id="@+id/button_update_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/rate_movie"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/toolbar"
         android:layout_below="@id/textView_movie_rating"/>
 
     <Button
         android:id="@+id/button_previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/toolbar2"
         android:text="@string/anterior" />
@@ -81,6 +89,7 @@
         android:id="@+id/button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/toolbar2"
         android:text="@string/siguiente" />
