@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fetchButton: Button
     private lateinit var movieTextView: TextView
     private lateinit var movieImageView: ImageView
-    private lateinit var selectGenreButton: Button
-    private lateinit var watchedButton: Button
-    private lateinit var watchlistMovieButton: Button
+    private lateinit var selectGenreButton: ImageButton
+    private lateinit var watchedButton: ImageButton
+    private lateinit var watchlistMovieButton: ImageButton
     private lateinit var profileButton: ImageButton
     private var selectedGenre: String = ""
     private var currentMovieId: Int = -1

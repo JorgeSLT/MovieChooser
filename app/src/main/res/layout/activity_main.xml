@@ -27,37 +27,45 @@
     <Button
         android:id="@+id/button_fetch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="@string/fetch_movie"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:layout_above="@id/button_mark_watchlist"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/button_mark_watchlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/watch_list"
-        android:layout_above="@id/toolbar"
-        android:layout_toStartOf="@id/button_select_genre"
-        android:layout_centerHorizontal="true"/>
-
-    <Button
+    <ImageButton
         android:id="@+id/button_select_genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_genre"
-        android:layout_above="@id/toolbar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_filter"
+        android:scaleType="fitCenter"
+        android:layout_alignBottom="@id/button_fetch"
+        android:layout_toEndOf="@+id/button_fetch"
         android:layout_centerHorizontal="true"
-         />
+        />
 
-    <Button
-        android:id="@+id/button_mark_watched"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mark_as_watched"
+    <ImageButton
+        android:id="@+id/button_mark_watchlist"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_watchlist"
         android:layout_above="@id/toolbar"
-        android:layout_toEndOf="@id/button_select_genre"
-        android:layout_centerHorizontal="true"/>
+        android:scaleType="fitCenter"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentStart="true"/>
+
+    <ImageButton
+        android:id="@+id/button_mark_watched"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_watched"
+        android:layout_above="@id/toolbar"
+        android:scaleType="fitCenter"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentEnd="true"/>
 
     <RelativeLayout
         android:id="@+id/toolbar"
