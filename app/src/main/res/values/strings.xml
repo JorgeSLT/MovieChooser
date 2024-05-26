@@ -23,4 +23,5 @@
     <string name="no_watchlist">No movies in watchlist</string>
     <string name="anterior">Previous</string>
     <string name="siguiente">Next</string>
+    <string name="movie_watched">Watched</string>
 </resources>

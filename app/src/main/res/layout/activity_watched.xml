@@ -41,7 +41,7 @@
     <ImageView
         android:id="@+id/imageView_watched_movie"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="280dp"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
