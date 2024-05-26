@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -24,20 +25,15 @@ class WatchedActivity : AppCompatActivity() {
     private var currentSetPos = -1
     private lateinit var watchedMovieIds: List<String>
 
-    private lateinit var movieRatingTextView: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_watched)
 
         val btnPrevious = findViewById<Button>(R.id.button_previous)
         val btnNext = findViewById<Button>(R.id.button_next)
-        val btnUpdateRating = findViewById<Button>(R.id.button_update_rating)
         val btnHome = findViewById<ImageButton>(R.id.button_home)
         val btnWatchlistPage = findViewById<Button>(R.id.button_watchlist_page)
         val btnLanguage = findViewById<Button>(R.id.button_language_page)
-
-        movieRatingTextView = findViewById<TextView>(R.id.textView_movie_rating)
 
         db = AppDatabase.getDatabase(this)
 
@@ -58,10 +54,6 @@ class WatchedActivity : AppCompatActivity() {
             }
         }
 
-        btnUpdateRating.setOnClickListener {
-            showRatingDialog()
-        }
-
         btnHome.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -78,6 +70,13 @@ class WatchedActivity : AppCompatActivity() {
             val intent = Intent(this, LanguageActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        val movieRatingBar = findViewById<RatingBar>(R.id.movieRatingBar)
+        movieRatingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            if (fromUser) {
+                updateMovieRating(watchedMovieIds[currentSetPos], rating.toInt())
+            }
         }
     }
 
@@ -103,9 +102,8 @@ class WatchedActivity : AppCompatActivity() {
     private fun fetchMovieRating(movieId: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val rating = db.movieRatingDao().getRatingById(movieId.toInt())
-            val ratedText = rating?.toString() ?: getString(R.string.rating_not_available)
             withContext(Dispatchers.Main) {
-                movieRatingTextView.text = getString(R.string.label_rating, ratedText)
+                findViewById<RatingBar>(R.id.movieRatingBar).rating = rating?.toFloat() ?: 0f
             }
         }
     }
@@ -120,11 +118,8 @@ class WatchedActivity : AppCompatActivity() {
 
         if (watchedMovieIds.isEmpty()) {
             findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.no_movies_watched)
-            findViewById<TextView>(R.id.textView_movie_rating).text = ""
             findViewById<ImageView>(R.id.imageView_watched_movie).setImageResource(0) // Clear the image view
-            findViewById<Button>(R.id.button_update_rating).visibility = View.GONE // Hide the button
         } else {
-            findViewById<Button>(R.id.button_update_rating).visibility = View.VISIBLE // Show the button
             if (currentSetPos >= 0 && currentSetPos < watchedMovieIds.size) {
                 val movieId = watchedMovieIds[currentSetPos]
                 fetchMovieDetailsById(movieId)

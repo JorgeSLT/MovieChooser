@@ -56,25 +56,15 @@
         android:padding="16dp"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textView_movie_rating"
+    <RatingBar
+        android:id="@+id/movieRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="1.0"
         android:layout_below="@id/textView_movie_title"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:textSize="18sp" />
-
-
-    <Button
-        android:id="@+id/button_update_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/rate_movie"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/toolbar"
-        android:layout_below="@id/textView_movie_rating"/>
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button_previous"
