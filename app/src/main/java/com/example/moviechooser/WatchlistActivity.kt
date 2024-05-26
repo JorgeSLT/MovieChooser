@@ -35,7 +35,7 @@ class WatchlistActivity : AppCompatActivity() {
 
         val btnPrevious = findViewById<Button>(R.id.button_previous)
         val btnNext = findViewById<Button>(R.id.button_next)
-        val btnWatched = findViewById<Button>(R.id.button_mark_watched)
+        val btnWatched = findViewById<ImageButton>(R.id.button_mark_watched)
         val btnHome = findViewById<ImageButton>(R.id.button_home)
         val btnWatchedPage = findViewById<Button>(R.id.button_watched_page)
         val btnProfile = findViewById<ImageButton>(R.id.button_profile)
@@ -120,9 +120,9 @@ class WatchlistActivity : AppCompatActivity() {
         if (watchlistMovieIds.isEmpty()) {
             findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.no_watchlist)
             findViewById<ImageView>(R.id.imageView_watched_movie).setImageResource(0) // Clear the image view
-            findViewById<Button>(R.id.button_mark_watched).visibility = View.GONE // Hide the button
+            findViewById<ImageButton>(R.id.button_mark_watched).visibility = View.GONE // Hide the button
         } else {
-            findViewById<Button>(R.id.button_mark_watched).visibility = View.VISIBLE // Show the button
+            findViewById<ImageButton>(R.id.button_mark_watched).visibility = View.VISIBLE // Show the button
             if (currentSetPos >= 0 && currentSetPos < watchlistMovieIds.size) {
                 fetchMovieDetailsById(watchlistMovieIds[currentSetPos])
                 fetchMovieImages(watchlistMovieIds[currentSetPos].toInt())

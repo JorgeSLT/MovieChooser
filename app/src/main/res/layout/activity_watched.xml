@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_watched_movie"
         android:layout_centerHorizontal="true"
-        android:padding="16dp"
+        android:padding="5dp"
         android:textSize="18sp" />
 
     <RatingBar

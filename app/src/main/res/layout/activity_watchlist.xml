@@ -53,16 +53,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_watched_movie"
         android:layout_centerHorizontal="true"
-        android:padding="16dp"
+        android:padding="5dp"
         android:textSize="18sp" />
 
 
-    <Button
+    <ImageButton
         android:id="@+id/button_mark_watched"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_watched"
         android:layout_centerHorizontal="true"
-        android:text="@string/movie_watched"
+        android:scaleType="fitCenter"
         android:layout_below="@id/textView_movie_title"/>
 
     <Button
