@@ -3,41 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/lightGray"
-        android:layout_alignParentTop="true">
-
-        <Button
-            android:id="@+id/button_language_page"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/language"
-            android:layout_toStartOf="@+id/button_watched_page"
-            android:layout_centerVertical="true"/>
-
-        <Button
-            android:id="@+id/button_watched_page"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/watched"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:id="@+id/button_watchlist_page"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
-            android:text="@string/watchlist"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_toEndOf="@+id/button_watched_page" />
-    </RelativeLayout>
-
     <TextView
         android:id="@+id/text_choose"
         android:layout_width="wrap_content"
@@ -45,7 +10,6 @@
         android:layout_margin="30dp"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:layout_below="@+id/toolbar2"
         android:text="@string/choose_your_language"
         />
 

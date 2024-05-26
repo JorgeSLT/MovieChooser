@@ -33,7 +33,6 @@ class WatchedActivity : AppCompatActivity() {
         val btnNext = findViewById<Button>(R.id.button_next)
         val btnHome = findViewById<ImageButton>(R.id.button_home)
         val btnWatchlistPage = findViewById<Button>(R.id.button_watchlist_page)
-        val btnLanguage = findViewById<Button>(R.id.button_language_page)
 
         db = AppDatabase.getDatabase(this)
 
@@ -66,17 +65,18 @@ class WatchedActivity : AppCompatActivity() {
             finish()
         }
 
-        btnLanguage.setOnClickListener {
-            val intent = Intent(this, LanguageActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
         val movieRatingBar = findViewById<RatingBar>(R.id.movieRatingBar)
         movieRatingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             if (fromUser) {
                 updateMovieRating(watchedMovieIds[currentSetPos], rating.toInt())
             }
+        }
+
+        val btnProfile = findViewById<ImageButton>(R.id.button_profile)
+        btnProfile.setOnClickListener {
+            val intent = Intent(this, LanguageActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 

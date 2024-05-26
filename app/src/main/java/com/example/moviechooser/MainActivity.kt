@@ -103,8 +103,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         profileButton.setOnClickListener {
+            val intent = Intent(this, LanguageActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnMovies = findViewById<ImageButton>(R.id.button_movies)
+        btnMovies.setOnClickListener {
             val intent = Intent(this, WatchedActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

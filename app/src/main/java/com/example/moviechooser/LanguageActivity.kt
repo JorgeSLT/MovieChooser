@@ -14,33 +14,25 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_language)
 
         val btnHome = findViewById<ImageButton>(R.id.button_home)
-        val btnWatchlistPage = findViewById<Button>(R.id.button_watchlist_page)
-        val btnWatchedPage = findViewById<Button>(R.id.button_watched_page)
-        val btnEnglish = findViewById<ImageButton>(R.id.button_english)
-        val btnSpanish = findViewById<ImageButton>(R.id.button_spanish)
-
         btnHome.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        btnWatchedPage.setOnClickListener {
+        val btnMovies = findViewById<ImageButton>(R.id.button_movies)
+        btnMovies.setOnClickListener {
             val intent = Intent(this, WatchedActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        btnWatchlistPage.setOnClickListener {
-            val intent = Intent(this, WatchlistActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
+        val btnEnglish = findViewById<ImageButton>(R.id.button_english)
         btnEnglish.setOnClickListener {
             setLocale("en")
         }
 
+        val btnSpanish = findViewById<ImageButton>(R.id.button_spanish)
         btnSpanish.setOnClickListener {
             setLocale("es")
         }
