@@ -7,26 +7,26 @@
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/lightGray"
+        android:background="@color/toolbar"
         android:layout_alignParentTop="true">
 
         <Button
             android:id="@+id/button_watched_page"
             android:layout_width="110dp"
             android:layout_height="70dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="60dp"
             android:text="@string/watched"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            />
 
         <Button
             android:id="@+id/button_watchlist_page"
             android:layout_width="110dp"
             android:layout_height="70dp"
+            android:layout_marginEnd="60dp"
             android:text="@string/watch_list"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_toEndOf="@+id/button_watched_page" />
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
     <ImageView
@@ -79,7 +79,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/lightGray"
+        android:background="@color/toolbar"
         android:layout_alignParentBottom="true">
 
         <ImageButton
@@ -87,7 +87,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_home"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="70dp"
             android:layout_centerVertical="true"/>
 
         <ImageButton
@@ -104,7 +104,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_settings"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="70dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>

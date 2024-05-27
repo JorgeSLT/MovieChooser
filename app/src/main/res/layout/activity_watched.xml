@@ -7,26 +7,26 @@
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/lightGray"
+        android:background="@color/toolbar"
         android:layout_alignParentTop="true">
 
         <Button
             android:id="@+id/button_watched_page"
             android:layout_width="110dp"
             android:layout_height="70dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="60dp"
             android:text="@string/watched"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            />
 
         <Button
             android:id="@+id/button_watchlist_page"
             android:layout_width="110dp"
             android:layout_height="70dp"
+            android:layout_marginEnd="60dp"
             android:text="@string/watch_list"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_toEndOf="@+id/button_watched_page" />
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
     <ImageView
@@ -37,6 +37,15 @@
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
         android:layout_below="@id/button_previous"/>
+
+    <ImageButton
+        android:id="@+id/button_share"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_share"
+        android:layout_marginBottom="10dp"
+        android:layout_alignBottom="@+id/imageView_watched_movie"
+        android:layout_toEndOf="@+id/imageView_watched_movie"/>
 
     <TextView
         android:id="@+id/textView_movie_title"
@@ -57,15 +66,7 @@
         android:layout_below="@id/textView_movie_title"
         android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:id="@+id/button_share"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_share"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_alignBottom="@+id/movieRatingBar"
-        android:layout_toEndOf="@+id/movieRatingBar"/>
+
 
     <Button
         android:id="@+id/button_previous"
@@ -89,7 +90,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/lightGray"
+        android:background="@color/toolbar"
         android:layout_alignParentBottom="true">
 
         <ImageButton
@@ -97,7 +98,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_home"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="70dp"
             android:layout_centerVertical="true"/>
 
         <ImageButton
@@ -114,7 +115,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_settings"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="70dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
