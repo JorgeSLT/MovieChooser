@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val genreMap = mapOf(
-        "All" to "",
         "Action" to "28",
         "Adventure" to "12",
         "Animation" to "16",
@@ -139,17 +138,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showGenreDialog() {
-        val genres = genreMap.keys.toTypedArray()
-        val genreIds = genreMap.values.toTypedArray()
-
-        val builder = AlertDialog.Builder(this)
+        val genres = genreMap.keys.toTypedArray() // No incluye "All" directamente
+        val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
         builder.setTitle(getString(R.string.choose_genre))
+
         builder.setItems(genres) { _, which ->
-            selectedGenre = genreIds[which]
+            // Establece el género basado en la selección del usuario
+            selectedGenre = genreMap[genres[which]] ?: ""
             movieTextView.text = getString(R.string.genre_selected, genres[which])
         }
-        builder.create().show()
+
+        // Botón para revertir cambios y establecer "All"
+        builder.setNeutralButton("Revertir cambios") { dialog, _ ->
+            selectedGenre = "" // Establece el género en vacío
+            dialog.dismiss()
+        }
+
+        // Botón para cancelar o cerrar el diálogo sin hacer cambios
+        builder.setNegativeButton("Volver") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
     }
+
+
 
 
     private fun showRatingDialog() {
