@@ -24,4 +24,6 @@
     <string name="anterior">Anterior</string>
     <string name="siguiente">Siguiente</string>
     <string name="movie_watched">Vista</string>
+    <string name="share_movie_message">Hey! He visto la película %1$s y la he valorado con %2$d estrellas</string>
+    <string name="no_movie_info">No hay información de película disponible para compartir</string>
 </resources>

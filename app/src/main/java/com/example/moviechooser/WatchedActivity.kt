@@ -100,13 +100,12 @@ class WatchedActivity : AppCompatActivity() {
 
     private fun shareMovieDetails() {
         if (currentSetPos >= 0 && currentSetPos < watchedMovieIds.size) {
-            val movieId = watchedMovieIds[currentSetPos]
             val movieTitleView = findViewById<TextView>(R.id.textView_movie_title)
             val movieTitle = movieTitleView.text.toString()
             val movieRatingBar = findViewById<RatingBar>(R.id.movieRatingBar)
             val movieRating = movieRatingBar.rating.toInt()
 
-            val shareMessage = "Hey! He visto la película $movieTitle y la he valorado con $movieRating estrellas"
+            val shareMessage = getString(R.string.share_movie_message, movieTitle, movieRating)
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, shareMessage)
@@ -115,10 +114,10 @@ class WatchedActivity : AppCompatActivity() {
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         } else {
-            // Manejar el caso donde no hay películas cargadas o el índice es incorrecto
-            Toast.makeText(this, "No hay información de película disponible para compartir", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.no_movie_info), Toast.LENGTH_SHORT).show()
         }
     }
+
 
 
     private fun updateMovieRating(movieId: String, rating: Int) {
