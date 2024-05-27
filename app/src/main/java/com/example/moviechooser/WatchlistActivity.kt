@@ -21,6 +21,7 @@ class WatchlistActivity : AppCompatActivity() {
     private var currentSetPos = -1
     private lateinit var watchlistMovieIds: List<String>
 
+    // Lazy initialization of sets to hold IDs of watched and watchlist movies from SharedPreferences.
     private val watchedMovies: MutableSet<String> by lazy {
         getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).getStringSet("watchedMovies", mutableSetOf()) ?: mutableSetOf()
     }
@@ -33,6 +34,7 @@ class WatchlistActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_watchlist)
 
+        // Initialize buttons and set up click listeners for navigation and interaction.
         val btnPrevious = findViewById<Button>(R.id.button_previous)
         val btnNext = findViewById<Button>(R.id.button_next)
         val btnWatched = findViewById<ImageButton>(R.id.button_mark_watched)
@@ -45,6 +47,7 @@ class WatchlistActivity : AppCompatActivity() {
         loadWatchlistMovieIds()
         updateMovieDetails()
 
+        // Navigate to the previous movie in the watchlist.
         btnPrevious.setOnClickListener {
             if (currentSetPos < watchlistMovieIds.size - 1) {
                 currentSetPos++
@@ -52,6 +55,7 @@ class WatchlistActivity : AppCompatActivity() {
             }
         }
 
+        // Navigate to the next movie in the watchlist.
         btnNext.setOnClickListener {
             if (currentSetPos > 0) {
                 currentSetPos--
@@ -59,22 +63,26 @@ class WatchlistActivity : AppCompatActivity() {
             }
         }
 
+        // Mark the current movie as watched and update local storage.
         btnWatched.setOnClickListener {
             markMovieAsWatched()
         }
 
+        // Return to the main activity.
         btnHome.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+        // Navigate to the watched movies page.
         btnWatchedPage.setOnClickListener {
             val intent = Intent(this, WatchedActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+        // Navigate to the language settings page.
         btnProfile.setOnClickListener {
             val intent = Intent(this, LanguageActivity::class.java)
             startActivity(intent)
@@ -89,6 +97,7 @@ class WatchlistActivity : AppCompatActivity() {
         }
     }
 
+    // Mark the current movie as watched, updating both watched and watchlist sets.
     private fun markMovieAsWatched() {
         val movieId = watchlistMovieIds[currentSetPos]
         if (movieId.isNotEmpty()) {
@@ -115,7 +124,7 @@ class WatchlistActivity : AppCompatActivity() {
         }
     }
 
-
+    // Update UI with the details of the current movie from the watchlist.
     private fun updateMovieDetails() {
         if (watchlistMovieIds.isEmpty()) {
             findViewById<TextView>(R.id.textView_movie_title).text = getString(R.string.no_watchlist)
@@ -130,7 +139,7 @@ class WatchlistActivity : AppCompatActivity() {
         }
     }
 
-
+    // Load movie IDs from SharedPreferences into the watchlist.
     private fun loadWatchlistMovieIds(): List<String> {
         val sharedPreferences = getSharedPreferences("MovieChooserPrefs", Context.MODE_PRIVATE)
         val watchlistMoviesSet = sharedPreferences.getStringSet("watchlistMovies", emptySet()) ?: emptySet()
@@ -139,6 +148,7 @@ class WatchlistActivity : AppCompatActivity() {
         return watchlistMovieIds
     }
 
+    // Fetch movie details from the API by movie ID.
     private fun fetchMovieDetailsById(movieId: String) {
         val api = RetrofitClient.instance
         api.getMovieByID(movieId.toInt(), "4c442d6c9d9f9e2d444029fbb1fd7732").enqueue(object : Callback<Movie> {
@@ -157,6 +167,7 @@ class WatchlistActivity : AppCompatActivity() {
         })
     }
 
+    // Fetch movie images from the API and update the ImageView.
     private fun fetchMovieImages(movieId: Int) {
         val api = RetrofitClient.instance
         api.getMovieImages(movieId, "4c442d6c9d9f9e2d444029fbb1fd7732").enqueue(object : Callback<MovieImagesResponse> {

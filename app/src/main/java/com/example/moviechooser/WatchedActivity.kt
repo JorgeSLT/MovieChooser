@@ -30,6 +30,7 @@ class WatchedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_watched)
 
+        // Initialize buttons and set up click listeners for navigation and functionality.
         val btnPrevious = findViewById<Button>(R.id.button_previous)
         val btnNext = findViewById<Button>(R.id.button_next)
         val btnHome = findViewById<ImageButton>(R.id.button_home)
@@ -40,6 +41,7 @@ class WatchedActivity : AppCompatActivity() {
         loadWatchedMovieIds()
         updateMovieDetails()
 
+        // Navigate to the previous movie in the watched list.
         btnPrevious.setOnClickListener {
             if (currentSetPos < watchedMovieIds.size - 1) {
                 currentSetPos++
@@ -47,6 +49,7 @@ class WatchedActivity : AppCompatActivity() {
             }
         }
 
+        // Navigate to the next movie in the watched list.
         btnNext.setOnClickListener {
             if (currentSetPos > 0) {
                 currentSetPos--
@@ -54,18 +57,21 @@ class WatchedActivity : AppCompatActivity() {
             }
         }
 
+        // Navigate back to the main activity.
         btnHome.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+        // Navigate to the watchlist activity.
         btnWatchlistPage.setOnClickListener {
             val intent = Intent(this, WatchlistActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+        // Set up the rating bar for movie ratings and handle user input.
         val movieRatingBar = findViewById<RatingBar>(R.id.movieRatingBar)
         movieRatingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             if (fromUser) {
@@ -73,6 +79,7 @@ class WatchedActivity : AppCompatActivity() {
             }
         }
 
+        // Navigate to the language settings activity.
         val btnProfile = findViewById<ImageButton>(R.id.button_profile)
         btnProfile.setOnClickListener {
             val intent = Intent(this, LanguageActivity::class.java)
@@ -80,12 +87,14 @@ class WatchedActivity : AppCompatActivity() {
             finish()
         }
 
+        // Share movie details with external apps.
         val btnShare = findViewById<ImageButton>(R.id.button_share)
         btnShare.setOnClickListener {
             shareMovieDetails()
         }
 
     }
+
 
     private fun showRatingDialog() {
         val ratings = arrayOf("1", "2", "3", "4", "5")
@@ -98,6 +107,7 @@ class WatchedActivity : AppCompatActivity() {
         builder.create().show()
     }
 
+    // Share movie details via other apps.
     private fun shareMovieDetails() {
         if (currentSetPos >= 0 && currentSetPos < watchedMovieIds.size) {
             val movieTitleView = findViewById<TextView>(R.id.textView_movie_title)
@@ -119,7 +129,7 @@ class WatchedActivity : AppCompatActivity() {
     }
 
 
-
+    // Update movie rating in the database.
     private fun updateMovieRating(movieId: String, rating: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             val movieRatingDao = db.movieRatingDao()
@@ -128,6 +138,7 @@ class WatchedActivity : AppCompatActivity() {
         }
     }
 
+    // Fetch and display the current movie rating from the database.
     private fun fetchMovieRating(movieId: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val rating = db.movieRatingDao().getRatingById(movieId.toInt())
@@ -137,6 +148,7 @@ class WatchedActivity : AppCompatActivity() {
         }
     }
 
+    // Update the UI with details of the current movie.
     private fun updateMovieDetails() {
         if (currentSetPos >= 0 && currentSetPos < watchedMovieIds.size) {
             val movieId = watchedMovieIds[currentSetPos]
@@ -158,6 +170,7 @@ class WatchedActivity : AppCompatActivity() {
         }
     }
 
+    // Load watched movie IDs from shared preferences.
     private fun loadWatchedMovieIds(): List<String> {
         val sharedPreferences = getSharedPreferences("MovieChooserPrefs", Context.MODE_PRIVATE)
         val watchedMoviesSet = sharedPreferences.getStringSet("watchedMovies", emptySet()) ?: emptySet()
@@ -166,6 +179,7 @@ class WatchedActivity : AppCompatActivity() {
         return watchedMovieIds
     }
 
+    // Fetch movie details from the database or API and update the UI.
     private fun fetchMovieDetailsById(movieId: String) {
         val api = RetrofitClient.instance
         api.getMovieByID(movieId.toInt(), "4c442d6c9d9f9e2d444029fbb1fd7732").enqueue(object : Callback<Movie> {
@@ -184,6 +198,7 @@ class WatchedActivity : AppCompatActivity() {
         })
     }
 
+    // Fetch movie images from the API and update the UI.
     private fun fetchMovieImages(movieId: Int) {
         val api = RetrofitClient.instance
         api.getMovieImages(movieId, "4c442d6c9d9f9e2d444029fbb1fd7732").enqueue(object : Callback<MovieImagesResponse> {

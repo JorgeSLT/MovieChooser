@@ -30,6 +30,7 @@ import com.example.moviechooser.db.AppDatabase
 import com.example.moviechooser.db.MovieRating
 
 class MainActivity : AppCompatActivity() {
+    // UI components declaration
     private lateinit var fetchButton: Button
     private lateinit var movieTextView: TextView
     private lateinit var movieImageView: ImageView
@@ -37,14 +38,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var watchedButton: Button
     private lateinit var watchlistMovieButton: Button
     private lateinit var profileButton: ImageButton
+
+    // Variables to hold selected filter values
     private var selectedGenre: String = ""
     private var minRating: Float = 0f
     private var currentMovieId: Int = -1
     private var releaseYear: Int = 0
     private var includeAdult: Boolean = false
 
+    // Database access
     private lateinit var db: AppDatabase
 
+    // Preferences to keep track of watched and watchlisted movies
     private val watchedMovies: MutableSet<String> by lazy {
         getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).getStringSet("watchedMovies", mutableSetOf()) ?: mutableSetOf()
     }
@@ -53,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         getSharedPreferences("MovieChooserPrefs", MODE_PRIVATE).getStringSet("watchlistMovies", mutableSetOf()) ?: mutableSetOf()
     }
 
+    // Map of movie genres for filtering
     private val genreMap = mapOf(
         "Action" to "28",
         "Adventure" to "12",
@@ -79,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Initialize UI components and set click listeners
         fetchButton = findViewById(R.id.button_fetch)
         profileButton = findViewById(R.id.button_profile)
         watchedButton = findViewById(R.id.button_mark_watched)
@@ -122,11 +129,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Check if it's the first time the app has been launched
     private fun isFirstTime(): Boolean {
         val sharedPref = getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("FIRST_TIME", true)
     }
 
+    // Mark a movie as watched and update preferences
     private fun markMovieAsWatched() {
         if (currentMovieId != -1) {
             watchedMovies.add(currentMovieId.toString())
@@ -136,6 +145,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Mark a movie as part of the watchlist and update preferences
     private fun markMovieAsWatchlist() {
         if (currentMovieId != -1) {
             watchlistMovies.add(currentMovieId.toString())
@@ -145,6 +155,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Show the main filter selection dialog
     private fun showFilterDialog() {
         val filterCategories = arrayOf(getString(R.string.genre), getString(R.string.rating), getString(R.string.year), getString(R.string.include_adult))
         val adapter = ArrayAdapter<String>(this, R.layout.dialog_item, filterCategories)
@@ -166,7 +177,7 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
-
+    // Toggle content filter for adult content and reflect changes
     private fun toggleAdultContent() {
         val originalIncludeAdult = includeAdult
         val options = arrayOf(getString(R.string.include), getString(R.string.exclude))
@@ -185,7 +196,7 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
-
+    // Filter dialog for selecting movie rating
     private fun showRatingFilterDialog() {
         val originalRating = minRating
         val ratings = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
@@ -204,6 +215,7 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
+    // Filter dialog for selecting movie release year
     private fun showReleaseYearDialog() {
         val originalYear = releaseYear
         val years = (1990..2024).map { it.toString() }.toList().toTypedArray()
@@ -222,8 +234,7 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
-
-
+    // Dialog for selecting movie genre
     private fun showGenreDialog() {
         val originalGenre = selectedGenre
         val genres = genreMap.keys.toTypedArray()
@@ -242,8 +253,7 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
-
-
+    // Rating dialog for movie rating
     private fun showRatingDialog() {
         val ratings = arrayOf("1", "2", "3", "4", "5")
         val builder = AlertDialog.Builder(this)
@@ -264,8 +274,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
+    // Fetch random movie from API based on selected filters
     private fun fetchRandomMovie() {
         val api = RetrofitClient.instance
         api.getMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", "popularity.desc", includeAdult = includeAdult, false, selectedGenre, voteAverageGte = minRating.toString(), year = releaseYear)
@@ -294,6 +303,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    // Fetch and display movie images from API
     private fun fetchMovieImages(movieId: Int) {
         val api = RetrofitClient.instance
         api.getMovieImages(movieId, "4c442d6c9d9f9e2d444029fbb1fd7732")
@@ -313,13 +323,13 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    // Initialize the database
     private fun initializeDatabase(context: Context) {
         db = AppDatabase.getDatabase(context)
     }
 }
 
-
-
+//Everything needed to stablish easy connection for API requests
 interface TMDbApi {
     @GET("discover/movie")
     fun getMovies(

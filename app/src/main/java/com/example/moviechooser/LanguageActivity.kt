@@ -13,6 +13,7 @@ class LanguageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_language)
 
+        // Setup the home button to navigate back to the MainActivity
         val btnHome = findViewById<ImageButton>(R.id.button_home)
         btnHome.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
@@ -20,6 +21,7 @@ class LanguageActivity : AppCompatActivity() {
             finish()
         }
 
+        // Setup the movies button to navigate to the WatchedActivity
         val btnMovies = findViewById<ImageButton>(R.id.button_movies)
         btnMovies.setOnClickListener {
             val intent = Intent(this, WatchedActivity::class.java)
@@ -27,17 +29,20 @@ class LanguageActivity : AppCompatActivity() {
             finish()
         }
 
+        // Setup the button for selecting English language
         val btnEnglish = findViewById<ImageButton>(R.id.button_english)
         btnEnglish.setOnClickListener {
             setLocale("en")
         }
 
+        // Setup the button for selecting Spanish language
         val btnSpanish = findViewById<ImageButton>(R.id.button_spanish)
         btnSpanish.setOnClickListener {
             setLocale("es")
         }
     }
 
+    // Set the locale of the app based on the given language code
     private fun setLocale(language: String) {
         val locale = Locale(language)
         Locale.setDefault(locale)
