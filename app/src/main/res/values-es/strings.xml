@@ -28,4 +28,13 @@
     <string name="no_movie_info">No hay información de película disponible para compartir</string>
     <string name="back">Volver</string>
     <string name="back_changes">Revertir cambios</string>
+    <string name="genre">Genero</string>
+    <string name="rating">Valoracion</string>
+    <string name="year">Año</string>
+    <string name="include_adult">Incluir contenido de adultos</string>
+    <string name="select_filter">Selecciona un filtro</string>
+    <string name="include">Incluir</string>
+    <string name="exclude">Excluir</string>
+    <string name="select_rating">Selecciona una valoración mínima</string>
+    <string name="select_year">Selecciona un año</string>
 </resources>

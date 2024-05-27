@@ -27,5 +27,14 @@
     <string name="share_movie_message">Hey! Ive watched the movie %1$s and I rated it with %2$d stars</string>
     <string name="no_movie_info">There is no info of the movie available to share</string>
     <string name="back">Go back</string>
-    <string name="back_changes">Delete changes</string>
+    <string name="back_changes">Reverte changes</string>
+    <string name="genre">Genre</string>
+    <string name="rating">Rating</string>
+    <string name="year">Year</string>
+    <string name="include_adult">Include adult content</string>
+    <string name="select_filter">Select filter category</string>
+    <string name="include">Include</string>
+    <string name="exclude">Exclude</string>
+    <string name="select_rating">Select minimum rating</string>
+    <string name="select_year">Select a year</string>
 </resources>

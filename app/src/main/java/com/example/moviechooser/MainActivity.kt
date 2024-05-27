@@ -146,39 +146,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFilterDialog() {
-        val filterCategories = arrayOf("Genre", "Rating", "Release Year", "Include Adult Content")
+        val filterCategories = arrayOf(getString(R.string.genre), getString(R.string.rating), getString(R.string.year), getString(R.string.include_adult))
         val adapter = ArrayAdapter<String>(this, R.layout.dialog_item, filterCategories)
 
         val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
-        builder.setTitle("Select Filter Category")
+        builder.setTitle(getString(R.string.select_filter))
 
         builder.setAdapter(adapter) { dialog, which ->
             when (filterCategories[which]) {
-                "Genre" -> showGenreDialog()
-                "Rating" -> showRatingFilterDialog()
-                "Release Year" -> showReleaseYearDialog()
-                "Include Adult Content" -> toggleAdultContent()
+                getString(R.string.genre) -> showGenreDialog()
+                getString(R.string.rating) -> showRatingFilterDialog()
+                getString(R.string.year) -> showReleaseYearDialog()
+                getString(R.string.include_adult) -> toggleAdultContent()
             }
         }
-
+        builder.setNegativeButton("Go Back") { dialog, _ ->
+            dialog.dismiss()
+        }
         builder.show()
     }
 
 
     private fun toggleAdultContent() {
         val originalIncludeAdult = includeAdult
-        val options = arrayOf("Include", "Exclude")
+        val options = arrayOf(getString(R.string.include), getString(R.string.exclude))
         val adapter = ArrayAdapter<String>(this, R.layout.dialog_item, options)
         val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
-        builder.setTitle("Adult Content")
+        builder.setTitle(getString(R.string.include_adult))
         builder.setSingleChoiceItems(adapter, if (includeAdult) 0 else 1) { dialog, which ->
             includeAdult = which == 0
         }
-        builder.setNeutralButton("Revert Changes") { _, _ ->
+        builder.setNeutralButton(getString(R.string.back_changes)) { _, _ ->
             includeAdult = originalIncludeAdult
         }
-        builder.setNegativeButton("Go Back") { dialog, _ ->
-            dialog.dismiss()
+        builder.setNegativeButton(getString(R.string.back)) { dialog, _ ->
+            showFilterDialog()
         }
         builder.show()
     }
@@ -189,15 +191,15 @@ class MainActivity : AppCompatActivity() {
         val ratings = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
         val adapter = ArrayAdapter<String>(this, R.layout.dialog_item, ratings)
         val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
-        builder.setTitle("Select Minimum Rating")
+        builder.setTitle(getString(R.string.select_rating))
         builder.setSingleChoiceItems(adapter, ratings.indexOf(minRating.toString())) { dialog, which ->
             minRating = ratings[which].toFloat()
         }
-        builder.setNeutralButton("Revert Changes") { _, _ ->
+        builder.setNeutralButton(getString(R.string.back_changes)) { _, _ ->
             minRating = originalRating
         }
-        builder.setNegativeButton("Go Back") { dialog, _ ->
-            dialog.dismiss()
+        builder.setNegativeButton(getString(R.string.back)) { dialog, _ ->
+            showFilterDialog()
         }
         builder.show()
     }
@@ -207,15 +209,15 @@ class MainActivity : AppCompatActivity() {
         val years = (1990..2024).map { it.toString() }.toList().toTypedArray()
         val adapter = ArrayAdapter<String>(this, R.layout.dialog_item, years)
         val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
-        builder.setTitle("Select Release Year")
+        builder.setTitle(getString(R.string.select_year))
         builder.setSingleChoiceItems(adapter, years.indexOf(releaseYear.toString())) { dialog, which ->
             releaseYear = years[which].toInt()
         }
-        builder.setNeutralButton("Revert Changes") { _, _ ->
+        builder.setNeutralButton(getString(R.string.back_changes)) { _, _ ->
             releaseYear = originalYear
         }
-        builder.setNegativeButton("Go Back") { dialog, _ ->
-            dialog.dismiss()
+        builder.setNegativeButton(getString(R.string.back)) { dialog, _ ->
+            showFilterDialog()
         }
         builder.show()
     }
@@ -227,15 +229,15 @@ class MainActivity : AppCompatActivity() {
         val genres = genreMap.keys.toTypedArray()
         val adapter = ArrayAdapter<String>(this, R.layout.dialog_item, genres)
         val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
-        builder.setTitle("Choose Genre")
+        builder.setTitle(getString(R.string.choose_genre))
         builder.setSingleChoiceItems(adapter, genres.indexOf(selectedGenre)) { dialog, which ->
             selectedGenre = genreMap[genres[which]] ?: ""
         }
-        builder.setNeutralButton("Revert Changes") { _, _ ->
+        builder.setNeutralButton(getString(R.string.back_changes)) { _, _ ->
             selectedGenre = originalGenre
         }
-        builder.setNegativeButton("Go Back") { dialog, _ ->
-            dialog.dismiss()
+        builder.setNegativeButton(getString(R.string.back)) { dialog, _ ->
+            showFilterDialog()
         }
         builder.show()
     }
