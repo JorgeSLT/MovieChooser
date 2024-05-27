@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -78,6 +79,12 @@ class WatchedActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val btnShare = findViewById<ImageButton>(R.id.button_share)
+        btnShare.setOnClickListener {
+            shareMovieDetails()
+        }
+
     }
 
     private fun showRatingDialog() {
@@ -90,6 +97,29 @@ class WatchedActivity : AppCompatActivity() {
         }
         builder.create().show()
     }
+
+    private fun shareMovieDetails() {
+        if (currentSetPos >= 0 && currentSetPos < watchedMovieIds.size) {
+            val movieId = watchedMovieIds[currentSetPos]
+            val movieTitleView = findViewById<TextView>(R.id.textView_movie_title)
+            val movieTitle = movieTitleView.text.toString()
+            val movieRatingBar = findViewById<RatingBar>(R.id.movieRatingBar)
+            val movieRating = movieRatingBar.rating.toInt()
+
+            val shareMessage = "Hey! He visto la película $movieTitle y la he valorado con $movieRating estrellas"
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, shareMessage)
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        } else {
+            // Manejar el caso donde no hay películas cargadas o el índice es incorrecto
+            Toast.makeText(this, "No hay información de película disponible para compartir", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun updateMovieRating(movieId: String, rating: Int) {
         CoroutineScope(Dispatchers.IO).launch {
