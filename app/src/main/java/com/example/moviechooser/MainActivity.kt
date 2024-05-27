@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     private var minRating: Float = 0f
     private var currentMovieId: Int = -1
     private var releaseYear: Int = 0
+    private var includeAdult: Boolean = false
 
     private lateinit var db: AppDatabase
 
@@ -144,7 +145,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFilterDialog() {
-        val filterCategories = arrayOf("Genre", "Rating", "Release Year")
+        val filterCategories = arrayOf("Genre", "Rating", "Release Year", "Include Adult Content")
         val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
         builder.setTitle("Select Filter Category")
         builder.setItems(filterCategories) { _, which ->
@@ -152,7 +153,18 @@ class MainActivity : AppCompatActivity() {
                 "Genre" -> showGenreDialog()
                 "Rating" -> showRatingFilterDialog()
                 "Release Year" -> showReleaseYearDialog()
+                "Include Adult Content" -> toggleAdultContent()
             }
+        }
+        builder.show()
+    }
+
+    private fun toggleAdultContent() {
+        val items = arrayOf("Include", "Exclude")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Adult Content")
+        builder.setItems(items) { _, which ->
+            includeAdult = which == 0
         }
         builder.show()
     }
@@ -227,7 +239,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchRandomMovie() {
         val api = RetrofitClient.instance
-        api.getMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", "popularity.desc", false, false, selectedGenre, voteAverageGte = minRating.toString(), year = releaseYear)
+        api.getMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", "popularity.desc", includeAdult = includeAdult, false, selectedGenre, voteAverageGte = minRating.toString(), year = releaseYear)
             .enqueue(object : Callback<MovieResponse> {
                 override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                     if (response.isSuccessful && response.body() != null) {
