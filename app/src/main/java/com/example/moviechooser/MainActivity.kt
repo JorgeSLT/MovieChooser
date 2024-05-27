@@ -37,7 +37,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var watchlistMovieButton: Button
     private lateinit var profileButton: ImageButton
     private var selectedGenre: String = ""
+    private var minRating: Float = 0f
     private var currentMovieId: Int = -1
+    private var releaseYear: Int = 0
 
     private lateinit var db: AppDatabase
 
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         selectGenreButton.setOnClickListener {
-            showGenreDialog()
+            showFilterDialog()
         }
 
         fetchButton.setOnClickListener {
@@ -139,6 +141,40 @@ class MainActivity : AppCompatActivity() {
                 .putStringSet("watchlistMovies", watchlistMovies).apply()
             Toast.makeText(this, getString(R.string.added_to_watchlist), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun showFilterDialog() {
+        val filterCategories = arrayOf("Genre", "Rating", "Release Year")
+        val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
+        builder.setTitle("Select Filter Category")
+        builder.setItems(filterCategories) { _, which ->
+            when (filterCategories[which]) {
+                "Genre" -> showGenreDialog()
+                "Rating" -> showRatingFilterDialog()
+                "Release Year" -> showReleaseYearDialog()
+            }
+        }
+        builder.show()
+    }
+
+    private fun showRatingFilterDialog() {
+        val ratings = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Minimum Rating")
+        builder.setItems(ratings) { _, which ->
+            minRating = ratings[which].toFloat()
+        }
+        builder.show()
+    }
+
+    private fun showReleaseYearDialog() {
+        val years = (1990..2024).map { it.toString() }.toTypedArray()  // Ajusta los años según lo necesario
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Release Year")
+        builder.setItems(years) { _, which ->
+            releaseYear = years[which].toInt()
+        }
+        builder.show()
     }
 
     private fun showGenreDialog() {
@@ -191,7 +227,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchRandomMovie() {
         val api = RetrofitClient.instance
-        api.getMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", "popularity.desc", false, false, selectedGenre)
+        api.getMovies("4c442d6c9d9f9e2d444029fbb1fd7732", "es-ES", "popularity.desc", false, false, selectedGenre, voteAverageGte = minRating.toString(), year = releaseYear)
             .enqueue(object : Callback<MovieResponse> {
                 override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                     if (response.isSuccessful && response.body() != null) {
@@ -251,7 +287,9 @@ interface TMDbApi {
         @Query("sort_by") sortBy: String,
         @Query("include_adult") includeAdult: Boolean,
         @Query("include_video") includeVideo: Boolean,
-        @Query("with_genres") genres: String
+        @Query("with_genres") genres: String,
+        @Query("vote_average.gte") voteAverageGte: String,
+        @Query("year") year: Int
     ): Call<MovieResponse>
 
     @GET("movie/{movie_id}")
