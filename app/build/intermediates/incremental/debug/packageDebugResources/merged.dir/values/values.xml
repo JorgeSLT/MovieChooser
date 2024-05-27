@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#77777777</color>
+    <color name="black">#000000</color>
+    <color name="darkGray">#99999999</color>
+    <color name="ic_launcher_background">#6B9F77</color>
+    <color name="lightGray">#BBBBBBBB</color>
+    <color name="toolbar">#99999999</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="added_to_watchlist">Added to watchlist</string>
+    <string name="anterior">Previous</string>
+    <string name="app_name">MovieChooser</string>
+    <string name="back">Go back</string>
+    <string name="back_changes">Reverte changes</string>
+    <string name="choose_genre">Choose a Genre:</string>
+    <string name="choose_your_language">Choose your language:</string>
+    <string name="exclude">Exclude</string>
+    <string name="fetch_movie">Search Movie</string>
+    <string name="genre">Genre</string>
+    <string name="genre_selected">Genre selected: %1$s</string>
+    <string name="include">Include</string>
+    <string name="include_adult">Include adult content</string>
+    <string name="label_rating">Rating: %1$s</string>
+    <string name="language">Language</string>
+    <string name="mark_as_watched">Mark as Watched</string>
+    <string name="marked_watchlist">Marked as watched and removed from watchlist</string>
+    <string name="movie_not_found">Movie not found</string>
+    <string name="movie_watched">Watched</string>
+    <string name="no_images">No images available for this movie</string>
+    <string name="no_movie_info">There is no info of the movie available to share</string>
+    <string name="no_movies">No movies found or all watched</string>
+    <string name="no_movies_watched">No movies watched</string>
+    <string name="no_watchlist">No movies in watchlist</string>
+    <string name="rate_movie">Rate this Movie</string>
+    <string name="rated"> - Rated: %1$d</string>
+    <string name="rating">Rating</string>
+    <string name="rating_not_available">Not rated</string>
+    <string name="select_filter">Select filter category</string>
+    <string name="select_genre">Select Genre</string>
+    <string name="select_rating">Select minimum rating</string>
+    <string name="select_year">Select a year</string>
+    <string name="share_movie_message">Hey! Ive watched the movie %1$s and I rated it with %2$d stars</string>
+    <string name="siguiente">Next</string>
+    <string name="watch_list">Watch list</string>
+    <string name="watched">Watched</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="year">Year</string>
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Theme.MovieChooser" parent="Theme.AppCompat.Light.NoActionBar">
+        
+        <item name="android:windowBackground">@color/background</item>
+        
+        <item name="android:textColor">@color/white</item>
+        
+        <item name="colorButtonNormal">@color/darkGray</item>
+        
+        <item name="android:textColorPrimary">@color/white</item>
+        
+        <item name="colorControlHighlight">@color/lightGray</item>
+        
+        <item name="android:statusBarColor">@color/black</item>
+        
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+</resources>

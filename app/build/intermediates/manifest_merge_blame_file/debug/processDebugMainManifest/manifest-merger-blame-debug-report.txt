@@ -1,0 +1,193 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.moviechooser"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="28"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:49:5-67
+11-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:49:22-64
+12
+13    <permission
+13-->[androidx.core:core:1.13.1] C:\Users\Jepeto\.gradle\caches\transforms-3\ab35f97d3950a4e987f2f6683075a1d8\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+14        android:name="com.example.moviechooser.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+14-->[androidx.core:core:1.13.1] C:\Users\Jepeto\.gradle\caches\transforms-3\ab35f97d3950a4e987f2f6683075a1d8\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+15        android:protectionLevel="signature" />
+15-->[androidx.core:core:1.13.1] C:\Users\Jepeto\.gradle\caches\transforms-3\ab35f97d3950a4e987f2f6683075a1d8\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+16
+17    <uses-permission android:name="com.example.moviechooser.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+17-->[androidx.core:core:1.13.1] C:\Users\Jepeto\.gradle\caches\transforms-3\ab35f97d3950a4e987f2f6683075a1d8\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.13.1] C:\Users\Jepeto\.gradle\caches\transforms-3\ab35f97d3950a4e987f2f6683075a1d8\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+18
+19    <application
+19-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:5:5-47:19
+20        android:allowBackup="true"
+20-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:6:9-35
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.13.1] C:\Users\Jepeto\.gradle\caches\transforms-3\ab35f97d3950a4e987f2f6683075a1d8\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+22        android:dataExtractionRules="@xml/data_extraction_rules"
+22-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:7:9-65
+23        android:debuggable="true"
+24        android:extractNativeLibs="false"
+25        android:fullBackupContent="@xml/backup_rules"
+25-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:8:9-54
+26        android:icon="@mipmap/ic_launcher"
+26-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:9:9-43
+27        android:label="@string/app_name"
+27-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:10:9-41
+28        android:roundIcon="@mipmap/ic_launcher_round"
+28-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:11:9-54
+29        android:supportsRtl="true"
+29-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:12:9-35
+30        android:testOnly="true"
+31        android:theme="@style/Theme.MovieChooser" >
+31-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:13:9-50
+32        <activity
+32-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:15:9-25:20
+33            android:name="com.example.moviechooser.MainActivity"
+33-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:16:13-41
+34            android:exported="true"
+34-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:17:13-36
+35            android:label="@string/app_name"
+35-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:18:13-45
+36            android:theme="@style/Theme.MovieChooser" >
+36-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:19:13-54
+37            <intent-filter>
+37-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:20:13-24:29
+38                <action android:name="android.intent.action.MAIN" />
+38-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:21:17-69
+38-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:21:25-66
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:23:17-77
+40-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:23:27-74
+41            </intent-filter>
+42        </activity>
+43        <activity
+43-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:27:9-32:20
+44            android:name="com.example.moviechooser.WatchedActivity"
+44-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:28:13-44
+45            android:exported="true"
+45-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:29:13-36
+46            android:label="@string/app_name"
+46-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:30:13-45
+47            android:theme="@style/Theme.MovieChooser" >
+47-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:31:13-54
+48        </activity>
+49        <activity
+49-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:34:9-39:20
+50            android:name="com.example.moviechooser.WatchlistActivity"
+50-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:35:13-46
+51            android:exported="true"
+51-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:36:13-36
+52            android:label="@string/app_name"
+52-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:37:13-45
+53            android:theme="@style/Theme.MovieChooser" >
+53-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:38:13-54
+54        </activity>
+55        <activity
+55-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:41:9-46:20
+56            android:name="com.example.moviechooser.LanguageActivity"
+56-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:42:13-45
+57            android:exported="true"
+57-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:43:13-36
+58            android:label="@string/app_name"
+58-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:44:13-45
+59            android:theme="@style/Theme.MovieChooser" >
+59-->C:\Users\Jepeto\AndroidStudioProjects\MovieChooser\app\src\main\AndroidManifest.xml:45:13-54
+60        </activity>
+61
+62        <service
+62-->[androidx.room:room-runtime:2.6.1] C:\Users\Jepeto\.gradle\caches\transforms-3\2c78545a51e373ae6c1749e6c82d61a9\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+63            android:name="androidx.room.MultiInstanceInvalidationService"
+63-->[androidx.room:room-runtime:2.6.1] C:\Users\Jepeto\.gradle\caches\transforms-3\2c78545a51e373ae6c1749e6c82d61a9\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+64            android:directBootAware="true"
+64-->[androidx.room:room-runtime:2.6.1] C:\Users\Jepeto\.gradle\caches\transforms-3\2c78545a51e373ae6c1749e6c82d61a9\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+65            android:exported="false" />
+65-->[androidx.room:room-runtime:2.6.1] C:\Users\Jepeto\.gradle\caches\transforms-3\2c78545a51e373ae6c1749e6c82d61a9\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+66
+67        <activity
+67-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\Jepeto\.gradle\caches\transforms-3\a2d813b3ec2664ee6c78ca504a6bf5e3\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+68            android:name="androidx.compose.ui.tooling.PreviewActivity"
+68-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\Jepeto\.gradle\caches\transforms-3\a2d813b3ec2664ee6c78ca504a6bf5e3\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+69            android:exported="true" />
+69-->[androidx.compose.ui:ui-tooling-android:1.5.0] C:\Users\Jepeto\.gradle\caches\transforms-3\a2d813b3ec2664ee6c78ca504a6bf5e3\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+70        <activity
+70-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\Jepeto\.gradle\caches\transforms-3\9a6764da436e9ea924e9e84c93539298\transformed\ui-test-manifest-1.5.0\AndroidManifest.xml:23:9-25:39
+71            android:name="androidx.activity.ComponentActivity"
+71-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\Jepeto\.gradle\caches\transforms-3\9a6764da436e9ea924e9e84c93539298\transformed\ui-test-manifest-1.5.0\AndroidManifest.xml:24:13-63
+72            android:exported="true" />
+72-->[androidx.compose.ui:ui-test-manifest:1.5.0] C:\Users\Jepeto\.gradle\caches\transforms-3\9a6764da436e9ea924e9e84c93539298\transformed\ui-test-manifest-1.5.0\AndroidManifest.xml:25:13-36
+73
+74        <provider
+74-->[androidx.emoji2:emoji2:1.4.0] C:\Users\Jepeto\.gradle\caches\transforms-3\4d8245d8d0089a6edfb8e31b7349604e\transformed\emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+75            android:name="androidx.startup.InitializationProvider"
+75-->[androidx.emoji2:emoji2:1.4.0] C:\Users\Jepeto\.gradle\caches\transforms-3\4d8245d8d0089a6edfb8e31b7349604e\transformed\emoji2-1.4.0\AndroidManifest.xml:25:13-67
+76            android:authorities="com.example.moviechooser.androidx-startup"
+76-->[androidx.emoji2:emoji2:1.4.0] C:\Users\Jepeto\.gradle\caches\transforms-3\4d8245d8d0089a6edfb8e31b7349604e\transformed\emoji2-1.4.0\AndroidManifest.xml:26:13-68
+77            android:exported="false" >
+77-->[androidx.emoji2:emoji2:1.4.0] C:\Users\Jepeto\.gradle\caches\transforms-3\4d8245d8d0089a6edfb8e31b7349604e\transformed\emoji2-1.4.0\AndroidManifest.xml:27:13-37
+78            <meta-data
+78-->[androidx.emoji2:emoji2:1.4.0] C:\Users\Jepeto\.gradle\caches\transforms-3\4d8245d8d0089a6edfb8e31b7349604e\transformed\emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+79                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+79-->[androidx.emoji2:emoji2:1.4.0] C:\Users\Jepeto\.gradle\caches\transforms-3\4d8245d8d0089a6edfb8e31b7349604e\transformed\emoji2-1.4.0\AndroidManifest.xml:30:17-75
+80                android:value="androidx.startup" />
+80-->[androidx.emoji2:emoji2:1.4.0] C:\Users\Jepeto\.gradle\caches\transforms-3\4d8245d8d0089a6edfb8e31b7349604e\transformed\emoji2-1.4.0\AndroidManifest.xml:31:17-49
+81            <meta-data
+81-->[androidx.lifecycle:lifecycle-process:2.8.0] C:\Users\Jepeto\.gradle\caches\transforms-3\bf2fa0c7762320120a6e6edc7dbb6c3c\transformed\lifecycle-process-2.8.0\AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+82-->[androidx.lifecycle:lifecycle-process:2.8.0] C:\Users\Jepeto\.gradle\caches\transforms-3\bf2fa0c7762320120a6e6edc7dbb6c3c\transformed\lifecycle-process-2.8.0\AndroidManifest.xml:30:17-78
+83                android:value="androidx.startup" />
+83-->[androidx.lifecycle:lifecycle-process:2.8.0] C:\Users\Jepeto\.gradle\caches\transforms-3\bf2fa0c7762320120a6e6edc7dbb6c3c\transformed\lifecycle-process-2.8.0\AndroidManifest.xml:31:17-49
+84            <meta-data
+84-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+85                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+86                android:value="androidx.startup" />
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+87        </provider>
+88
+89        <receiver
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+90            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+91            android:directBootAware="false"
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+92            android:enabled="true"
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+93            android:exported="true"
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+94            android:permission="android.permission.DUMP" >
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+96                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+97            </intent-filter>
+98            <intent-filter>
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+99                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+100            </intent-filter>
+101            <intent-filter>
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+102                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+103            </intent-filter>
+104            <intent-filter>
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+105                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Jepeto\.gradle\caches\transforms-3\7124f0528022291084850f34174b8dbe\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+106            </intent-filter>
+107        </receiver>
+108    </application>
+109
+110</manifest>

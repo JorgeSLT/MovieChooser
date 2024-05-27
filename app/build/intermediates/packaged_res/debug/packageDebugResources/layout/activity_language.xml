@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="@string/choose_your_language"
+        />
+
+    <ImageButton
+        android:id="@+id/button_english"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:src="@drawable/england"
+        android:layout_below="@+id/text_choose"
+        android:layout_marginStart="60dp"
+        android:scaleType="fitCenter"
+        android:background="@null"/>
+
+    <ImageButton
+        android:id="@+id/button_spanish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/button_english"
+        android:layout_alignTop="@+id/button_english"
+        android:layout_alignBottom="@+id/button_english"
+        android:src="@drawable/spain"
+        android:scaleType="fitCenter"
+        android:background="@null"/>
+
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/toolbar"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/button_home"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_home"
+            android:layout_marginStart="70dp"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:id="@+id/button_movies"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_movies"
+            android:layout_marginStart="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:id="@+id/button_profile"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_settings"
+            android:layout_marginEnd="70dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="added_to_watchlist">Guardado para ver</string>
+    <string name="anterior">Anterior</string>
+    <string name="app_name">MovieChooser</string>
+    <string name="back">Volver</string>
+    <string name="back_changes">Revertir cambios</string>
+    <string name="choose_genre">Elige un genero:</string>
+    <string name="choose_your_language">Elige tu idioma:</string>
+    <string name="exclude">Excluir</string>
+    <string name="fetch_movie">Buscar peli</string>
+    <string name="genre">Genero</string>
+    <string name="genre_selected">Genero seleccionado: %1$s</string>
+    <string name="include">Incluir</string>
+    <string name="include_adult">Incluir contenido de adultos</string>
+    <string name="label_rating">Puntuación: %1$s</string>
+    <string name="language">Idioma</string>
+    <string name="mark_as_watched">Vista</string>
+    <string name="marked_watchlist">Marcado como visto</string>
+    <string name="movie_not_found">Pelicula no encontrada</string>
+    <string name="movie_watched">Vista</string>
+    <string name="no_images">No hay imagen</string>
+    <string name="no_movie_info">No hay información de película disponible para compartir</string>
+    <string name="no_movies">No hay peliculas o todas han sido vistas</string>
+    <string name="no_movies_watched">Sin peliculas vistas</string>
+    <string name="no_watchlist">Ninguna pelicula para ver</string>
+    <string name="rate_movie">Puntuar</string>
+    <string name="rated"> - Valorado: %1$d</string>
+    <string name="rating">Valoracion</string>
+    <string name="rating_not_available">Sin puntuar</string>
+    <string name="select_filter">Selecciona un filtro</string>
+    <string name="select_genre">Genero</string>
+    <string name="select_rating">Selecciona una valoración mínima</string>
+    <string name="select_year">Selecciona un año</string>
+    <string name="share_movie_message">Hey! He visto la película %1$s y la he valorado con %2$d estrellas</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="watch_list">Para ver</string>
+    <string name="watched">Vistas</string>
+    <string name="watchlist">Para ver</string>
+    <string name="year">Año</string>
+</resources>
