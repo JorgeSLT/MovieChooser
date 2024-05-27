@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MovieChooser</string>
-    <string name="fetch_movie">Fetch Movie</string>
+    <string name="fetch_movie">Search Movie</string>
     <string name="watch_list">Watch list</string>
     <string name="select_genre">Select Genre</string>
     <string name="mark_as_watched">Mark as Watched</string>
@@ -14,7 +14,7 @@
     <string name="watched">Watched</string>
     <string name="watchlist">Watchlist</string>
     <string name="choose_your_language">Choose your language:</string>
-    <string name="choose_genre">Choose a Genre</string>
+    <string name="choose_genre">Choose a Genre:</string>
     <string name="genre_selected">Genre selected: %1$s</string>
     <string name="no_movies">No movies found or all watched</string>
     <string name="no_images">No images available for this movie</string>
@@ -26,4 +26,6 @@
     <string name="movie_watched">Watched</string>
     <string name="share_movie_message">Hey! Ive watched the movie %1$s and I rated it with %2$d stars</string>
     <string name="no_movie_info">There is no info of the movie available to share</string>
+    <string name="back">Go back</string>
+    <string name="back_changes">Delete changes</string>
 </resources>

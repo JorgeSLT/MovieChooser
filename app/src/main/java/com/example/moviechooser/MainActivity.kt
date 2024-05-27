@@ -3,6 +3,10 @@ package com.example.moviechooser
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -29,8 +33,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var movieTextView: TextView
     private lateinit var movieImageView: ImageView
     private lateinit var selectGenreButton: ImageButton
-    private lateinit var watchedButton: ImageButton
-    private lateinit var watchlistMovieButton: ImageButton
+    private lateinit var watchedButton: Button
+    private lateinit var watchlistMovieButton: Button
     private lateinit var profileButton: ImageButton
     private var selectedGenre: String = ""
     private var currentMovieId: Int = -1
@@ -138,33 +142,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showGenreDialog() {
-        val genres = genreMap.keys.toTypedArray() // No incluye "All" directamente
+        val genres = genreMap.keys.toTypedArray()
+        val adapter = GenreAdapter(this, genres)
+
         val builder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
         builder.setTitle(getString(R.string.choose_genre))
 
-        builder.setItems(genres) { _, which ->
-            // Establece el género basado en la selección del usuario
+        builder.setAdapter(adapter) { _, which ->
             selectedGenre = genreMap[genres[which]] ?: ""
             movieTextView.text = getString(R.string.genre_selected, genres[which])
         }
 
-        // Botón para revertir cambios y establecer "All"
-        builder.setNeutralButton("Revertir cambios") { dialog, _ ->
-            selectedGenre = "" // Establece el género en vacío
+        builder.setNeutralButton(getString(R.string.back_changes)) { dialog, _ ->
+            selectedGenre = ""
             dialog.dismiss()
         }
 
-        // Botón para cancelar o cerrar el diálogo sin hacer cambios
-        builder.setNegativeButton("Volver") { dialog, _ ->
+        builder.setNegativeButton(getString(R.string.back)) { dialog, _ ->
             dialog.dismiss()
         }
 
         val dialog = builder.create()
+        dialog.listView.dividerHeight = 1
         dialog.show()
     }
-
-
-
 
     private fun showRatingDialog() {
         val ratings = arrayOf("1", "2", "3", "4", "5")
@@ -299,3 +300,12 @@ data class MovieImagesResponse(
 data class ImageDetail(
     val file_path: String
 )
+
+class GenreAdapter(context: Context, genres: Array<String>) : ArrayAdapter<String>(context, 0, genres) {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.dialog_item, parent, false)
+        val textView = view.findViewById<TextView>(R.id.textView)
+        textView.text = getItem(position)
+        return view
+    }
+}
